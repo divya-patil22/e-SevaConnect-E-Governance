@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply Online | e-SevaConnect E-Governance Portal</title>
+  <meta name="description" content="Submit online applications for government certificates and welfare schemes through our guided multi-step wizard.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/design-system-v2.css">
+</head>
+<body>
+
+  <!-- Top Accessibility Bar -->
+  <header class="top-util-bar" role="region" aria-label="Accessibility & Preferences">
+    <div class="container top-util-inner">
+      <div class="util-flag-badge">
+        <span class="util-tricolor-strip" aria-hidden="true">
+          <span class="tricolor-1"></span>
+          <span class="tricolor-2"></span>
+          <span class="tricolor-3"></span>
+        </span>
+        <span>GOVERNMENT OF INDIA &bull; DIGITAL APPLICATION DESK</span>
+      </div>
+      <div class="util-controls">
+        <button id="btn-toggle-contrast" class="util-btn" title="Toggle High Contrast Display" aria-label="Toggle High Contrast">
+          <span>◐</span> High Contrast
+        </button>
+        <div class="font-resizers" role="group" aria-label="Text Size Controls">
+          <button id="btn-font-normal" class="util-btn" title="Default Font Size">A</button>
+          <button id="btn-font-large" class="util-btn" title="Large Font Size">A+</button>
+          <button id="btn-font-xlarge" class="util-btn" title="Extra Large Font Size">A++</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Branding -->
+  <div class="site-header">
+    <div class="container header-brand-row">
+      <div class="brand-wrapper">
+        <div class="national-emblem" aria-hidden="true">🏛️</div>
+        <div class="brand-titles">
+          <h1>e-SevaConnect</h1>
+          <p class="tagline">Online Citizen Service Application Desk</p>
+        </div>
+      </div>
+      <div class="brand-actions">
+        <div class="btn-emergency">
+          <span>📞</span> Toll-Free: <strong>1800-111-2026</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="main-nav-bar" role="navigation" aria-label="Primary Navigation">
+    <div class="container nav-container">
+      <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+      <ul id="nav-links" class="nav-links">
+        <li class="nav-item"><a href="index.html">Home</a></li>
+        <li class="nav-item"><a href="services.html">Services Catalog</a></li>
+        <li class="nav-item"><a href="apply.html" class="active">Apply Online</a></li>
+        <li class="nav-item"><a href="track.html">Track Application</a></li>
+        <li class="nav-item"><a href="grievance.html">Grievance Redressal</a></li>
+        <li class="nav-item"><a href="dashboard.html">Citizen Dashboard</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div style="background-color: var(--gov-primary); color: #fff; padding: 2.25rem 0 1.75rem; border-bottom: 4px solid var(--gov-saffron);">
+    <div class="container">
+      <h2 style="font-size: 1.85rem; margin-bottom: 0.35rem;">Online Service Application Desk</h2>
+      <p style="color: #cbd5e1; font-size: 0.95rem;">
+        Follow the 4-step guided wizard to register your application. Your submission generates an official legal tracking number.
+      </p>
+    </div>
+  </div>
+
+  <main class="section-py" id="main-content">
+    <div class="container" style="max-width: 920px;">
+
+      <!-- Multi-step Application Wizard Card -->
+      <div class="wizard-card">
+        <!-- Progress Steps Header -->
+        <div class="wizard-progress-bar" role="tablist">
+          <div class="wizard-step-tab active" id="tab-step-1">
+            <span class="step-num">1</span>
+            <span>Citizen Demographics</span>
+          </div>
+          <div class="wizard-step-tab" id="tab-step-2">
+            <span class="step-num">2</span>
+            <span>Service Particulars</span>
+          </div>
+          <div class="wizard-step-tab" id="tab-step-3">
+            <span class="step-num">3</span>
+            <span>Document Uploads</span>
+          </div>
+          <div class="wizard-step-tab" id="tab-step-4">
+            <span class="step-num">4</span>
+            <span>Review &amp; Submit</span>
+          </div>
+        </div>
+
+        <form id="service-apply-form" novalidate>
+          
+          <!-- STEP 1: CITIZEN DEMOGRAPHICS -->
+          <div class="wizard-step-content active" id="step-1">
+            <h3 style="color: var(--gov-primary); margin-bottom: 0.5rem; font-size: 1.25rem;">
+              Step 1: Service Selection &amp; Citizen Identity
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1.75rem;">
+              Ensure your details match your legal identity documents (Aadhaar / Voter ID).
+            </p>
+
+            <div class="form-group" style="margin-bottom: 1.25rem;">
+              <label for="apply-service-select" class="form-label">
+                Select Public Service <span class="required">*</span>
+              </label>
+              <select id="apply-service-select" class="form-select" required>
+                <option value="">-- Please select a government service --</option>
+                <option value="income-cert" data-dept="Revenue &amp; Land Records">Income Certificate (Revenue)</option>
+                <option value="domicile-cert" data-dept="Revenue &amp; Land Records">Domicile &amp; Residence Certificate (Revenue)</option>
+                <option value="caste-validity" data-dept="Social Welfare &amp; Justice">Caste Validity Certificate (Social Welfare)</option>
+                <option value="senior-pension" data-dept="Social Welfare">Senior Citizen Pension Scheme (Welfare)</option>
+                <option value="birth-cert" data-dept="Municipal Administration">Birth Certificate Registration (Municipal)</option>
+                <option value="death-cert" data-dept="Municipal Administration">Death Certificate Issuance (Municipal)</option>
+                <option value="ration-card" data-dept="Food &amp; Civil Supplies">Ration Card Modification (Civil Supplies)</option>
+                <option value="farmer-subsidy" data-dept="Agriculture &amp; Farmer Welfare">Farmer Solar Pump &amp; Equipment Subsidy</option>
+              </select>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="app-fullname" class="form-label">Full Name of Applicant <span class="required">*</span></label>
+                <input type="text" id="app-fullname" class="form-input" placeholder="e.g. Ramesh Kumar Patil" required>
+              </div>
+              <div class="form-group">
+                <label for="app-fathername" class="form-label">Father / Spouse Name <span class="required">*</span></label>
+                <input type="text" id="app-fathername" class="form-input" placeholder="e.g. Kumar Shripad Patil" required>
+              </div>
+            </div>
+
+            <div class="form-grid-3" style="margin-top: 1.25rem;">
+              <div class="form-group">
+                <label for="app-dob" class="form-label">Date of Birth <span class="required">*</span></label>
+                <input type="date" id="app-dob" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="app-gender" class="form-label">Gender <span class="required">*</span></label>
+                <select id="app-gender" class="form-select" required>
+                  <option value="">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Transgender">Transgender</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="app-mobile" class="form-label">Mobile Number <span class="required">*</span></label>
+                <input type="tel" id="app-mobile" class="form-input" placeholder="10-digit mobile" maxlength="10" required>
+              </div>
+            </div>
+
+            <div class="form-grid-2" style="margin-top: 1.25rem;">
+              <div class="form-group">
+                <label for="app-email" class="form-label">Email Address (Optional)</label>
+                <input type="email" id="app-email" class="form-input" placeholder="applicant@email.com">
+              </div>
+              <div class="form-group">
+                <label for="app-aadhaar" class="form-label">12-Digit Aadhaar Number <span class="required">*</span></label>
+                <input type="text" id="app-aadhaar" class="form-input" placeholder="12-digit UID (e.g. 123456789012)" maxlength="12" required>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 1.25rem;">
+              <label for="app-address" class="form-label">Residential Street Address <span class="required">*</span></label>
+              <textarea id="app-address" class="form-textarea" rows="2" placeholder="House / Flat No., Street, Village / Colony" required></textarea>
+            </div>
+
+            <div class="form-grid-2" style="margin-top: 1.25rem;">
+              <div class="form-group">
+                <label for="app-district" class="form-label">District <span class="required">*</span></label>
+                <select id="app-district" class="form-select" required>
+                  <option value="">-- Select Residential District --</option>
+                  <option value="Pune">Pune</option>
+                  <option value="Mumbai Suburban">Mumbai Suburban</option>
+                  <option value="Nagpur">Nagpur</option>
+                  <option value="Nashik">Nashik</option>
+                  <option value="Aurangabad / Chhatrapati Sambhajinagar">Aurangabad</option>
+                  <option value="Kolhapur">Kolhapur</option>
+                  <option value="Solapur">Solapur</option>
+                  <option value="Thane">Thane</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="app-pincode" class="form-label">Postal PIN Code <span class="required">*</span></label>
+                <input type="text" id="app-pincode" class="form-input" placeholder="6-digit PIN" maxlength="6" required>
+              </div>
+            </div>
+
+            <div class="wizard-actions">
+              <div></div>
+              <button type="button" class="btn-primary btn-wizard-next">
+                Next: Service Particulars →
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 2: SERVICE-SPECIFIC PARTICULARS -->
+          <div class="wizard-step-content" id="step-2">
+            <h3 style="color: var(--gov-primary); margin-bottom: 0.5rem; font-size: 1.25rem;">
+              Step 2: Service-Specific Eligibility Particulars
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1.75rem;">
+              Provide information relevant to the selected service category.
+            </p>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="app-income" class="form-label">Annual Family Income (in INR)</label>
+                <input type="number" id="app-income" class="form-input" placeholder="e.g. 85000">
+              </div>
+              <div class="form-group">
+                <label for="app-occupation" class="form-label">Primary Occupation</label>
+                <select id="app-occupation" class="form-select">
+                  <option value="Agriculture">Agriculture / Farming</option>
+                  <option value="Salaried">Salaried (Private / Govt)</option>
+                  <option value="Self-Employed">Self-Employed / Business</option>
+                  <option value="Daily Wage">Daily Wage Labor</option>
+                  <option value="Student">Student</option>
+                  <option value="Retired">Retired / Senior Citizen</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-grid-2" style="margin-top: 1.25rem;">
+              <div class="form-group">
+                <label for="app-residence-years" class="form-label">Years of Residence in State</label>
+                <input type="number" id="app-residence-years" class="form-input" placeholder="e.g. 18" min="1" max="100">
+              </div>
+              <div class="form-group">
+                <label for="app-caste-cat" class="form-label">Social Category</label>
+                <select id="app-caste-cat" class="form-select">
+                  <option value="General">General / Open</option>
+                  <option value="OBC">Other Backward Class (OBC)</option>
+                  <option value="SC">Scheduled Caste (SC)</option>
+                  <option value="ST">Scheduled Tribe (ST)</option>
+                  <option value="EWS">Economically Weaker Section (EWS)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 1.25rem;">
+              <label for="app-purpose" class="form-label">Purpose / Reason for Certificate <span class="required">*</span></label>
+              <textarea id="app-purpose" class="form-textarea" rows="3" placeholder="e.g. Required for Higher Education Engineering Admission / State Scholarship / DBT Pension" required></textarea>
+            </div>
+
+            <div class="wizard-actions">
+              <button type="button" class="btn-outline btn-wizard-prev">← Back</button>
+              <button type="button" class="btn-primary btn-wizard-next">Next: Document Uploads →</button>
+            </div>
+          </div>
+
+          <!-- STEP 3: DOCUMENT UPLOAD SIMULATION -->
+          <div class="wizard-step-content" id="step-3">
+            <h3 style="color: var(--gov-primary); margin-bottom: 0.5rem; font-size: 1.25rem;">
+              Step 3: Document Uploads &amp; Verification
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1.75rem;">
+              Supported formats: PDF, JPG, PNG (Max 2MB per file). Self-attested copies are mandatory.
+            </p>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">1. Proof of Identity (Aadhaar / Voter ID / PAN) <span class="required">*</span></label>
+                <div class="upload-dropzone">
+                  <div class="upload-icon">📁</div>
+                  <input type="file" id="app-doc-id" accept=".pdf,.jpg,.jpeg,.png">
+                  <div style="font-size: 0.775rem; color: var(--text-muted); margin-top: 0.25rem;">
+                    Identity Proof (Required)
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">2. Proof of Address (Electricity Bill / Ration Card) <span class="required">*</span></label>
+                <div class="upload-dropzone">
+                  <div class="upload-icon">🏠</div>
+                  <input type="file" id="app-doc-address" accept=".pdf,.jpg,.jpeg,.png">
+                  <div style="font-size: 0.775rem; color: var(--text-muted); margin-top: 0.25rem;">
+                    Address Proof (Required)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-grid-2" style="margin-top: 1.25rem;">
+              <div class="form-group">
+                <label class="form-label">3. Income Proof / Affidavit / School Leaving Certificate</label>
+                <div class="upload-dropzone">
+                  <div class="upload-icon">📑</div>
+                  <input type="file" id="app-doc-supporting" accept=".pdf,.jpg,.jpeg,.png">
+                  <div style="font-size: 0.775rem; color: var(--text-muted); margin-top: 0.25rem;">
+                    Supporting Document
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">4. Applicant Passport Size Photograph</label>
+                <div class="upload-dropzone">
+                  <div class="upload-icon">📷</div>
+                  <input type="file" id="app-doc-photo" accept=".jpg,.jpeg,.png">
+                  <div style="font-size: 0.775rem; color: var(--text-muted); margin-top: 0.25rem;">
+                    Recent Color Photograph
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="wizard-actions">
+              <button type="button" class="btn-outline btn-wizard-prev">← Back</button>
+              <button type="button" class="btn-primary btn-wizard-next">Next: Review &amp; Confirm →</button>
+            </div>
+          </div>
+
+          <!-- STEP 4: REVIEW & SUBMIT -->
+          <div class="wizard-step-content" id="step-4">
+            <h3 style="color: var(--gov-primary); margin-bottom: 0.5rem; font-size: 1.25rem;">
+              Step 4: Application Review &amp; Statutory Declaration
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1.5rem;">
+              Please inspect all entered parameters before final submission. An official tracking ID will be generated.
+            </p>
+
+            <div class="review-summary-card">
+              <div class="review-item">
+                <span class="review-label">Selected Public Service:</span>
+                <span class="review-value" id="rev-service">-</span>
+              </div>
+              <div class="review-item">
+                <span class="review-label">Applicant Legal Name:</span>
+                <span class="review-value" id="rev-name">-</span>
+              </div>
+              <div class="review-item">
+                <span class="review-label">Contact Mobile:</span>
+                <span class="review-value" id="rev-mobile">-</span>
+              </div>
+              <div class="review-item">
+                <span class="review-label">Aadhaar (Masked):</span>
+                <span class="review-value" id="rev-aadhaar">-</span>
+              </div>
+              <div class="review-item">
+                <span class="review-label">District Jurisdiction:</span>
+                <span class="review-value" id="rev-district">-</span>
+              </div>
+              <div class="review-item">
+                <span class="review-label">Applicable Government Fee:</span>
+                <span class="review-value" id="rev-fee" style="color: var(--gov-green);">₹20 (Government Processing Fee)</span>
+              </div>
+            </div>
+
+            <div style="background: #fffbeb; border: 1px solid #fef3c7; padding: 1.25rem; border-radius: var(--radius-md); margin-bottom: 1.75rem;">
+              <label style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.875rem; color: #92400e; cursor: pointer;">
+                <input type="checkbox" id="app-declaration" style="margin-top: 3px; transform: scale(1.2);" required>
+                <span>
+                  <strong>Statutory Declaration:</strong> I hereby solemnly affirm and declare that the statements made above and the documents submitted are true, complete, and authentic to the best of my knowledge. I understand that any false declaration will render me liable for legal penal action under Section 199 &amp; 200 of the Indian Penal Code.
+                </span>
+              </label>
+            </div>
+
+            <div class="wizard-actions">
+              <button type="button" class="btn-outline btn-wizard-prev">← Back</button>
+              <button type="submit" class="btn-saffron" style="font-size: 1.05rem; padding: 0.85rem 2rem;">
+                Submit Application Online &bull; Generate Tracking ID
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- =========================================================================
+       SUBMISSION CONFIRMATION MODAL
+       ========================================================================= -->
+  <div id="success-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 10000; align-items: center; justify-content: center; padding: 1.5rem;">
+    <div style="background: var(--bg-surface); max-width: 540px; width: 100%; border-radius: var(--radius-lg); padding: 2.25rem; text-align: center; box-shadow: var(--shadow-lg); border-top: 6px solid var(--gov-green);">
+      <div style="font-size: 3.5rem; margin-bottom: 0.5rem;">✅</div>
+      <h3 style="color: var(--gov-primary); font-size: 1.6rem; margin-bottom: 0.5rem;">Application Registered!</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        Your application has been logged into the State E-Governance Registry. Please save your Reference Tracking ID.
+      </p>
+
+      <div style="background: #f1f5f9; padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border: 1px dashed var(--border-color);">
+        <div style="font-size: 0.775rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Reference Tracking ID</div>
+        <div id="modal-app-id" style="font-size: 1.6rem; font-weight: 800; color: var(--gov-primary); letter-spacing: 1px;">ESC-2026-XXXX</div>
+        <div style="font-size: 0.85rem; margin-top: 0.25rem;">
+          Applicant: <strong id="modal-applicant">-</strong> | Service: <strong id="modal-service">-</strong>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <button onclick="window.print()" class="btn-outline">🖨️ Print Receipt</button>
+        <a id="modal-track-link" href="track.html" class="btn-primary">Track Progress Now →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Official Footer -->
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <div>&copy; 2026 e-SevaConnect. Government of India Initiative.</div>
+      <div>Online Citizen Application Desk. Compliant with IT Act 2000.</div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    // Link modal track button dynamically to tracking ID
+    document.getElementById('service-apply-form').addEventListener('submit', function() {
+      setTimeout(function() {
+        var id = document.getElementById('modal-app-id').textContent;
+        var trackBtn = document.getElementById('modal-track-link');
+        if (trackBtn) {
+          trackBtn.href = 'track.html?id=' + encodeURIComponent(id);
+        }
+      }, 50);
+    });
+  </script>
+</body>
+</html>
+

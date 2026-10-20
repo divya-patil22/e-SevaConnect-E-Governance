@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital E-Certificate Verification | e-SevaConnect</title>
+  <meta name="description" content="Digitally signed e-Governance certificate with tamper-proof cryptographic verification and QR code.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/design-system-v2.css">
+</head>
+<body style="background-color: #f1f5f9; padding: 2rem 1rem;">
+
+  <div class="container" style="max-width: 860px;">
+    <!-- Top toolbar for actions -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;" class="btn-print-hide">
+      <a href="dashboard.html" class="btn-outline">← Back to Dashboard</a>
+      <div style="display: flex; gap: 0.75rem;">
+        <button onclick="window.print()" class="btn-primary">🖨️ Print / Save as PDF</button>
+      </div>
+    </div>
+
+    <!-- Official E-Certificate Frame -->
+    <div class="certificate-frame" id="cert-frame">
+      <div class="cert-header">
+        <div class="cert-emblem">🏛️</div>
+        <p style="font-size: 0.85rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #475569; margin-bottom: 0.25rem;">
+          GOVERNMENT OF INDIA &bull; REVENUE &amp; DISTRICT MAGISTRACY
+        </p>
+        <h2 style="font-size: 1.65rem; color: var(--gov-primary); margin-bottom: 0.25rem;">OFFICIAL DIGITAL E-GOVERNANCE CERTIFICATE</h2>
+        <h3 id="cert-service-display" style="font-size: 1.25rem; color: var(--gov-saffron-dark);">CERTIFICATE OF ANNUAL HOUSEHOLD INCOME</h3>
+        <div style="font-size: 0.825rem; color: #64748b; margin-top: 0.5rem;">
+          Certificate Ref. Number: <strong id="cert-id-display" class="cert-highlight">ESC-2026-8812</strong> &bull;
+          Issued Under Section 3 of State Citizen Services Guarantee Act
+        </div>
+      </div>
+
+      <div class="cert-body">
+        <p style="margin-bottom: 1.25rem;">
+          This is to solemnly certify that <strong id="cert-applicant-display" class="cert-highlight">Ramesh K. Patil</strong>, 
+          resident of District <strong id="cert-district-display" class="cert-highlight">Pune</strong>, holding masked identification credential 
+          Aadhaar UID <strong id="cert-aadhaar-display" class="cert-highlight">XXXX-XXXX-9012</strong>, has been duly verified 
+          by the competent revenue authorities under the jurisdiction of the Department of 
+          <strong id="cert-dept-display" class="cert-highlight">Revenue &amp; Land Records</strong>.
+        </p>
+
+        <p style="margin-bottom: 1.25rem;">
+          Based upon inquiry reports submitted by the designated Circle Inspector and scrutiny of official tax and land revenue registers, 
+          the competent authority is satisfied with the veracity of the claim, and this statutory credential is hereby granted for all legal, educational, 
+          and welfare purposes.
+        </p>
+
+        <p style="font-size: 0.85rem; color: #475569; background: #f8fafc; padding: 0.75rem 1rem; border-left: 4px solid var(--gov-green); border-radius: var(--radius-sm);">
+          <strong>Statutory Legal Note:</strong> This is an electronically generated and digitally signed certificate in accordance with Section 4 and Section 5 of the Information Technology (IT) Act, 2000. It requires no physical wet ink signature or physical rubber seal.
+        </p>
+      </div>
+
+      <div class="cert-footer-row">
+        <!-- Cryptographic 2D QR Code Simulation -->
+        <div>
+          <div class="qr-box">
+            <div>
+              <div style="font-size: 1.4rem;">📱</div>
+              <div style="font-weight: 700; font-size: 0.6rem; letter-spacing: 0.5px;">SECURE QR</div>
+              <div style="font-size: 0.55rem; color: #64748b;">VERIFIED DPI</div>
+            </div>
+          </div>
+          <div style="font-size: 0.7rem; color: #64748b; margin-top: 0.25rem; max-width: 140px;">
+            Scan via UMANG / DigiLocker app to authenticate signature.
+          </div>
+        </div>
+
+        <!-- Issue Date & Signatory Details -->
+        <div style="text-align: right;">
+          <div style="font-size: 0.85rem; color: #475569; margin-bottom: 0.25rem;">
+            Issue Date: <strong id="cert-date-display">01 Oct 2026</strong>
+          </div>
+          <div style="display: inline-block; padding: 0.5rem 1rem; background: #eff6ff; border: 1px dashed #3b82f6; border-radius: var(--radius-sm); margin-top: 0.5rem; text-align: right;">
+            <div style="font-size: 0.75rem; color: #1e40af; font-weight: 700;">✅ DIGITALLY SIGNED</div>
+            <div id="cert-officer-display" style="font-size: 0.85rem; font-weight: 800; color: var(--gov-primary);">S. Sharma, Tehsildar</div>
+            <div style="font-size: 0.725rem; color: #64748b;">Competent Executive Magistrate Authority</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
+

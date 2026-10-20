@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services Catalog | e-SevaConnect E-Governance Portal</title>
+  <meta name="description" content="Explore and apply for public citizen services across Revenue, Social Welfare, Municipal, and Civil Supplies departments.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/design-system-v2.css">
+</head>
+<body>
+
+  <!-- Top Accessibility Bar -->
+  <header class="top-util-bar" role="region" aria-label="Accessibility & Preferences">
+    <div class="container top-util-inner">
+      <div class="util-flag-badge">
+        <span class="util-tricolor-strip" aria-hidden="true">
+          <span class="tricolor-1"></span>
+          <span class="tricolor-2"></span>
+          <span class="tricolor-3"></span>
+        </span>
+        <span>GOVERNMENT OF INDIA &bull; DIGITAL SERVICES DIRECTORY</span>
+      </div>
+      <div class="util-controls">
+        <button id="btn-toggle-contrast" class="util-btn" title="Toggle High Contrast Display" aria-label="Toggle High Contrast">
+          <span>◐</span> High Contrast
+        </button>
+        <div class="font-resizers" role="group" aria-label="Text Size Controls">
+          <button id="btn-font-normal" class="util-btn" title="Default Font Size" aria-label="Default font size">A</button>
+          <button id="btn-font-large" class="util-btn" title="Large Font Size" aria-label="Large font size">A+</button>
+          <button id="btn-font-xlarge" class="util-btn" title="Extra Large Font Size" aria-label="Extra large font size">A++</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Branding -->
+  <div class="site-header">
+    <div class="container header-brand-row">
+      <div class="brand-wrapper">
+        <div class="national-emblem" aria-hidden="true">🏛️</div>
+        <div class="brand-titles">
+          <h1>e-SevaConnect</h1>
+          <p class="tagline">Official Directory of Public Digital Services</p>
+        </div>
+      </div>
+      <div class="brand-actions">
+        <div class="btn-emergency">
+          <span>📞</span> Toll-Free: <strong>1800-111-2026</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="main-nav-bar" role="navigation" aria-label="Primary Navigation">
+    <div class="container nav-container">
+      <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+      <ul id="nav-links" class="nav-links">
+        <li class="nav-item"><a href="index.html">Home</a></li>
+        <li class="nav-item"><a href="services.html" class="active">Services Catalog</a></li>
+        <li class="nav-item"><a href="apply.html">Apply Online</a></li>
+        <li class="nav-item"><a href="track.html">Track Application</a></li>
+        <li class="nav-item"><a href="grievance.html">Grievance Redressal</a></li>
+        <li class="nav-item"><a href="dashboard.html">Citizen Dashboard</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div style="background-color: var(--gov-primary); color: #fff; padding: 2.5rem 0 2rem; border-bottom: 4px solid var(--gov-saffron);">
+    <div class="container">
+      <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Citizen Public Services Catalog</h2>
+      <p style="color: #cbd5e1; font-size: 1rem; max-width: 650px;">
+        Search through all state and municipal digital services. Review statutory eligibility criteria, mandatory documents, and process fees before applying.
+      </p>
+    </div>
+  </div>
+
+  <!-- Search & Filter Controls -->
+  <main class="section-py" id="main-content">
+    <div class="container">
+      <div style="background: var(--bg-surface); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+        <div class="form-grid-2" style="align-items: center;">
+          <div class="form-group">
+            <label for="catalog-search-input" class="form-label">Search by Service Keyword or Department</label>
+            <input type="text" id="catalog-search-input" class="form-input" placeholder="Type e.g., 'Income', 'Pension', 'Caste', 'Ration', 'Revenue'...">
+          </div>
+          <div class="form-group">
+            <label for="catalog-dept-filter" class="form-label">Filter by Administrative Department</label>
+            <select id="catalog-dept-filter" class="form-select">
+              <option value="all">All Departments</option>
+              <option value="revenue">Revenue &amp; Land Records</option>
+              <option value="welfare">Social Justice &amp; Welfare</option>
+              <option value="municipal">Municipal Administration</option>
+              <option value="supplies">Food &amp; Civil Supplies</option>
+              <option value="agriculture">Agriculture &amp; Farmer Welfare</option>
+            </select>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color); font-size: 0.85rem; color: var(--text-muted);">
+          <span id="catalog-results-count">Showing 8 public services</span>
+          <span>Tip: Click "Apply Online" on any service to start the instant wizard.</span>
+        </div>
+      </div>
+
+      <!-- Services Cards Grid -->
+      <div class="services-grid" id="catalog-grid">
+
+        <!-- 1. Income Certificate -->
+        <article class="service-card catalog-card" data-title="Income Certificate" data-dept="revenue" data-keywords="income salary finance revenue tehsildar tax scholarship">
+          <div>
+            <div class="service-card-top">
+              <div class="service-icon-box">💰</div>
+              <span class="service-dept-badge">Revenue &amp; Land</span>
+            </div>
+            <h3>Income Certificate</h3>
+            <p class="service-desc">Statutory proof of annual household gross income issued by the Sub-Divisional Magistrate / Tehsildar.</p>
+            <div class="service-meta-list">
+              <div class="service-meta-item"><span>⏱️ SLA:</span> <strong>7 Working Days</strong></div>
+              <div class="service-meta-item"><span>📋 Documents:</span> Salary Certificate / Form 16, Ration Card, Land Holding 7/12 Extract</div>
+              <div class="service-meta-item"><span>💳 Govt Fee:</span> <strong>₹20</strong></div>
+            </div>
+          </div>
+          <div class="service-actions">
+            <a href="apply.html?service=income-cert" class="btn-primary" style="flex: 1;">Apply Online</a>
+          </div>
+        </article>
+
+        <!-- 2. Domicile & Residence -->
+        <article class="service-card catalog-card" data-title="Domicile & Residence Certificate" data-dept="revenue" data-keywords="domicile residence native address stay state revenue">
+          <div>
+            <div class="service-card-top">
+              <div class="service-icon-box">🏠</div>
+              <span class="service-dept-badge">Revenue &amp; Land</span>
+            </div>
+            <h3>Domicile &amp; Residence Certificate</h3>
+            <p class="service-desc">Legal certification affirming that an individual has continuously resided within the state for at least 15 years.</p>
+            <div class="service-meta-list">
+              <div class="service-meta-item"><span>⏱️ SLA:</span> <strong>10 Working Days</strong></div>
+              <div class="service-meta-item"><span>📋 Documents:</span> School Leaving Certificate, 15-Yr Proof (Electricity Bills), Aadhaar</div>
+              <div class="service-meta-item"><span>💳 Govt Fee:</span> <strong>₹20</strong></div>
+            </div>
+          </div>
+          <div class="service-actions">
+            <a href="apply.html?service=domicile-cert" class="btn-primary" style="flex: 1;">Apply Online</a>
+          </div>
+        </article>
+
+        <!-- 3. Caste Certificate & Validity -->
+        <article class="service-card catalog-card" data-title="Caste Validity Certificate" data-dept="welfare" data-keywords="caste validity reservation sc st obc social justice welfare committee">
+          <div>
+            <div class="service-card-top">
+              <div class="service-icon-box">📜</div>
+              <span class="service-dept-badge">Social Justice &amp; Welfare</span>
+            </div>
+            <h3>Caste Validity Certificate</h3>
+            <p class="service-desc">Scrutiny and validation certificate from the District Scrutiny Committee for affirmative welfare and admissions.</p>
+            <div class="service-meta-list">
+              <div class="service-meta-item"><span>⏱️ SLA:</span> <strong>15 Working Days</strong></div>
+              <div class="service-meta-item"><span>📋 Documents:</span> Paternal Ancestor Records, Primary School Admission Register, Genealogy Tree</div>
+              <div class="service-meta-item"><span>💳 Govt Fee:</span> <strong>₹30</strong></div>
+            </div>
+          </div>
+          <div class="service-actions">
+            <a href="apply.html?service=caste-validity" class="btn-primary" style="flex: 1;">Apply Online</a>
+          </div>
+        </article>
+
+        <!-- 4. Senior Citizen Pension -->
+        <article class="service-card catalog-card" data-title="Senior Citizen Pension Scheme" data-dept="welfare" data-keywords="pension senior citizen elderly social welfare dbt allowance old age">
+          <div>
+            <div class="service-card-top">
+              <div class="service-icon-box">👴</div>
+              <span class="service-dept-badge">Social Justice &amp; Welfare</span>
+            </div>
+            <h3>Senior Citizen Pension Scheme</h3>
+            <p class="service-desc">Monthly welfare grant disbursed directly into verified bank accounts of elderly citizens aged 60+ without financial support.</p>
+            <div class="service-meta-list">
+              <div class="service-meta-item"><span>⏱️ SLA:</span> <strong>12 Working Days</strong></div>
+              <div class="service-meta-item"><span>📋 Documents:</span> Age Proof (Voter ID/Birth Certificate), Bank Passbook IFSC, BPL Card</div>
+              <div class="service-meta-item"><span>💳 Govt Fee:</span> <strong>Free (Zero Fee)</strong></div>
+            </div>
+          </div>
+          <div class="service-actions">
+            <a href="apply.html?service=senior-pension" class="btn-primary" style="flex: 1;">Apply Online</a>
+          </div>
+        </article>
+
+        <!-- 5. Birth Certificate -->
+        <article class="service-card catalog-card" data-title="Birth Certificate" data-dept="municipal" data-keywords="birth municipal child hospital newborn registration corporation council">
+          <div>
+            <div class="service-card-top">
+              <div class="service-icon-box">👶</div>
+              <span class="service-dept-badge">Municipal Administration</span>
+            </div>
+            <h3>Birth Certificate Registration</h3>
+            <p class="service-desc">Official registration and digital certified copy of child birth registered within municipal council jurisdictions.</p>
+            <div class="service-meta-list">
+              <div class="service-meta-item"><span>⏱️ SLA:</span> <strong>5 Working Days</strong></div>
+              <div class="service-meta-item"><span>📋 Documents:</span> Hospital Institutional Delivery Slip, Parents' Aadhaar Cards, Marriage Card</div>
+              <div class="service-meta-item"><span>💳 Govt Fee:</span> <strong>₹15</strong></div>
+            </div>
+          </div>
+          <div class="service-actions">
+            <a href="apply.html?service=birth-cert" class="btn-primary" style="flex: 1;">Apply Online</a>
+          </div>
+        </article>
+
+        <!-- 6. Death Certificate -->
+        <article class="service-card catalog-card" data-title="Death Certificate" data-dept="municipal" data-keywords="death municipal deceased insurance legal heir cemetery cremation">
+          <div>
+            <div class="service-card-top">
+              <div class="service-icon-box">🕊️</div>
+              <span class="service-dept-badge">Municipal Administration</span>
+            </div>
+            <h3>Death Certificate Issuance</h3>
+            <p class="service-desc">Statutory certified death record required for legal heirship, insurance settlement, and property succession.</p>
+            <div class="service-meta-list">
+              <div class="service-meta-item"><span>⏱️ SLA:</span> <strong>5 Working Days</strong></div>
+              <div class="service-meta-item"><span>📋 Documents:</span> Cremation/Burial Ground Slip, Doctor Medical Cause Summary, Applicant ID</div>
+              <div class="service-meta-item"><span>💳 Govt Fee:</span> <strong>₹15</strong></div>
+            </div>
+          </div>
+          <div class="service-actions">
+            <a href="apply.html?service=death-cert" class="btn-primary" style="flex: 1;">Apply Online</a>
+          </div>
+        </article>
+
+        <!-- 7. Ration Card Amendment -->
+        <article class="service-card catalog-card" data-title="Ration Card Modifications" data-dept="supplies" data-keywords="ration food supplies grain nfsa food security card booklet">
+          <div>
+            <div class="service-card-top">
+              <div class="service-icon-box">🌾</div>
+              <span class="service-dept-badge">Food &amp; Civil Supplies</span>
+            </div>
+            <h3>Ration Card Modifications</h3>
+            <p class="service-desc">Inclusion or deletion of family members, gas connection updates, and address changes on NFSA smart ration cards.</p>
+            <div class="service-meta-list">
+              <div class="service-meta-item"><span>⏱️ SLA:</span> <strong>8 Working Days</strong></div>
+              <div class="service-meta-item"><span>📋 Documents:</span> Existing Ration Booklet Copy, Member Aadhaar, Birth/Surrender Certificate</div>
+              <div class="service-meta-item"><span>💳 Govt Fee:</span> <strong>₹25</strong></div>
+            </div>
+          </div>
+          <div class="service-actions">
+            <a href="apply.html?service=ration-card" class="btn-primary" style="flex: 1;">Apply Online</a>
+          </div>
+        </article>
+
+        <!-- 8. Agricultural Farmer Subsidy -->
+        <article class="service-card catalog-card" data-title="Farmer Solar Pump & Equipment Subsidy" data-dept="agriculture" data-keywords="farmer agriculture subsidy solar pump irrigation dbt crop rural">
+          <div>
+            <div class="service-card-top">
+              <div class="service-icon-box">🚜</div>
+              <span class="service-dept-badge">Agriculture &amp; Farmer Welfare</span>
+            </div>
+            <h3>Agricultural Equipment Subsidy</h3>
+            <p class="service-desc">Direct financial assistance and DBT equipment subsidy for solar agricultural pumps and drip irrigation setups.</p>
+            <div class="service-meta-list">
+              <div class="service-meta-item"><span>⏱️ SLA:</span> <strong>14 Working Days</strong></div>
+              <div class="service-meta-item"><span>📋 Documents:</span> 7/12 Land Record, 8-A Extract, Water Source Affidavit, Bank Mandate</div>
+              <div class="service-meta-item"><span>💳 Govt Fee:</span> <strong>Free (Zero Fee)</strong></div>
+            </div>
+          </div>
+          <div class="service-actions">
+            <a href="apply.html?service=farmer-subsidy" class="btn-primary" style="flex: 1;">Apply Online</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Official Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h4>e-SevaConnect Portal</h4>
+        <p style="font-size: 0.85rem; color: #94a3b8;">
+          Citizen Public Services Directory operated under Department of E-Governance and Administrative Reforms standards.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Portal Home</a></li>
+          <li><a href="apply.html">Apply for Services</a></li>
+          <li><a href="track.html">Track Application</a></li>
+          <li><a href="grievance.html">Lodge Grievance</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support &amp; Helpline</h4>
+        <ul>
+          <li><strong>Toll-Free:</strong> 1800-111-2026</li>
+          <li><strong>Grievance Escalation:</strong> Level 1 Public Officer</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Compliance</h4>
+        <p style="font-size: 0.8rem; color: #94a3b8;">
+          All services adhere to the Citizen Charter Act with mandatory time-bound delivery guarantees.
+        </p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 e-SevaConnect. Government of India Initiative.</div>
+      <div>Designed for Junior Web Developer E-Governance Internship Submission.</div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
+

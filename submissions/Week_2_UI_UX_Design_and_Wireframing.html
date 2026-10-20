@@ -1,0 +1,2216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 2: UI/UX Design & Wireframing | e-SevaConnect E-Governance Portal</title>
+  <style>
+    /* ===================================================================
+       DOCUMENT MASTER STYLES
+       =================================================================== */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    :root {
+      --gov-navy: #142d54;
+      --gov-navy-dark: #0c1c36;
+      --gov-navy-light: #1e457f;
+      --gov-saffron: #f57c00;
+      --gov-saffron-light: #ff9800;
+      --gov-green: #2e7d32;
+      --gov-blue: #1976d2;
+      --bg-white: #ffffff;
+      --bg-light: #f8fafc;
+      --bg-gray: #f1f5f9;
+      --text-dark: #0f172a;
+      --text-gray: #475569;
+      --text-light: #94a3b8;
+      --border: #e2e8f0;
+      --shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* Print Styles */
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white; font-size: 11pt; }
+      .page-break { page-break-before: always; }
+      .wireframe-section { page-break-inside: avoid; }
+      .container { max-width: 100% !important; }
+    }
+
+    /* Toolbar */
+    .doc-toolbar {
+      background: var(--gov-navy);
+      color: white;
+      padding: 0.75rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .toolbar-brand { font-weight: 700; font-size: 0.95rem; }
+    .toolbar-brand span { color: #ffb74d; }
+
+    .toolbar-actions { display: flex; gap: 0.75rem; }
+
+    .btn-toolbar {
+      padding: 0.45rem 1.1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-print { background: var(--gov-saffron); color: #000; }
+    .btn-back { background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+
+    /* Main Container */
+    .container { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+    /* Cover Page */
+    .cover-page {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 3.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .cover-emblem { font-size: 3rem; margin-bottom: 0.75rem; }
+    .cover-authority {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+      color: var(--text-gray);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .cover-page h1 {
+      font-size: 2rem;
+      color: var(--gov-navy);
+      font-weight: 800;
+      margin-bottom: 0.25rem;
+    }
+
+    .cover-subtitle {
+      font-size: 1.2rem;
+      color: var(--gov-saffron);
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+      text-align: left;
+      background: var(--bg-light);
+      padding: 1.5rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .cover-meta-grid div strong { color: var(--gov-navy); }
+    .cover-tricolor {
+      height: 5px;
+      background: linear-gradient(90deg, #ff9933 33%, #ffffff 33%, #ffffff 66%, #138808 66%);
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      margin: 1.5rem auto;
+      max-width: 200px;
+    }
+
+    /* Section Headers */
+    .section-block {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    h2.section-title {
+      font-size: 1.45rem;
+      color: var(--gov-navy);
+      font-weight: 800;
+      border-bottom: 3px solid var(--gov-saffron);
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h3.sub-section {
+      font-size: 1.1rem;
+      color: var(--gov-navy);
+      font-weight: 700;
+      margin: 1.75rem 0 0.75rem;
+      border-left: 4px solid var(--gov-navy);
+      padding-left: 0.75rem;
+    }
+
+    h4.sub-sub {
+      font-size: 0.95rem;
+      color: var(--gov-navy-light);
+      font-weight: 700;
+      margin: 1.25rem 0 0.5rem;
+    }
+
+    p { margin-bottom: 0.85rem; color: var(--text-gray); }
+
+    ul, ol {
+      margin-left: 1.5rem;
+      margin-bottom: 0.85rem;
+      color: var(--text-gray);
+    }
+
+    li { margin-bottom: 0.35rem; }
+
+    /* Tables */
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.875rem; }
+    th, td { border: 1px solid var(--border); padding: 0.65rem 0.85rem; text-align: left; }
+    th { background: var(--bg-gray); color: var(--gov-navy); font-weight: 700; }
+    tr:nth-child(even) td { background: var(--bg-light); }
+
+    /* Annotation Box */
+    .annotation-box {
+      background: #fffbeb;
+      border: 1px solid #fcd34d;
+      border-left: 4px solid var(--gov-saffron);
+      padding: 1rem 1.25rem;
+      border-radius: 0 6px 6px 0;
+      margin: 1rem 0;
+      font-size: 0.875rem;
+    }
+
+    .annotation-box strong { color: #b45309; }
+
+    .note-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-left: 4px solid var(--gov-blue);
+      padding: 0.85rem 1.25rem;
+      border-radius: 0 6px 6px 0;
+      margin: 1rem 0;
+      font-size: 0.875rem;
+      color: #1e40af;
+    }
+
+    .success-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-left: 4px solid var(--gov-green);
+      padding: 0.85rem 1.25rem;
+      border-radius: 0 6px 6px 0;
+      margin: 1rem 0;
+      font-size: 0.875rem;
+      color: #166534;
+    }
+
+    /* ===================================================================
+       WIREFRAME STYLES
+       =================================================================== */
+    .wireframe-wrapper {
+      background: var(--bg-gray);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .wireframe-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--text-gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.75rem;
+    }
+
+    .wireframe-label::before {
+      content: '';
+      display: inline-block;
+      width: 10px; height: 10px;
+      background: var(--gov-saffron);
+      border-radius: 50%;
+    }
+
+    /* WF: Browser Chrome */
+    .wf-browser {
+      background: #e8eaf0;
+      border: 1.5px solid #9ca3af;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .wf-browser-bar {
+      background: #d1d5db;
+      padding: 0.5rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .wf-dots { display: flex; gap: 5px; }
+    .wf-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .wf-dot-r { background: #ef4444; }
+    .wf-dot-y { background: #eab308; }
+    .wf-dot-g { background: #22c55e; }
+
+    .wf-url-bar {
+      flex: 1;
+      background: white;
+      border-radius: 20px;
+      padding: 0.25rem 0.85rem;
+      font-size: 0.75rem;
+      color: var(--text-gray);
+      border: 1px solid #9ca3af;
+    }
+
+    .wf-body { background: white; }
+
+    /* Wireframe components */
+    .wf-util-bar {
+      background: #1a2744;
+      padding: 0.3rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .wf-util-text { color: rgba(255,255,255,0.85); font-size: 0.65rem; }
+    .wf-util-btns { display: flex; gap: 0.4rem; }
+    .wf-util-btn {
+      border: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.85);
+      padding: 0.1rem 0.4rem;
+      font-size: 0.6rem;
+      border-radius: 2px;
+    }
+
+    .wf-header {
+      background: white;
+      padding: 0.7rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .wf-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .wf-logo {
+      width: 32px; height: 32px;
+      background: var(--gov-navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .wf-title { font-size: 0.8rem; font-weight: 700; color: var(--gov-navy); line-height: 1.1; }
+    .wf-tagline { font-size: 0.55rem; color: #64748b; }
+
+    .wf-navbar {
+      background: var(--gov-navy);
+      display: flex;
+      align-items: center;
+      gap: 0.1rem;
+      padding: 0 0.75rem;
+    }
+
+    .wf-nav-item {
+      padding: 0.55rem 0.7rem;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.65rem;
+      font-weight: 600;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+    }
+
+    .wf-nav-item.wf-active {
+      color: #ffb74d;
+      border-bottom-color: #f57c00;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .wf-hero {
+      background: linear-gradient(135deg, #0c1c36 0%, #1e457f 100%);
+      padding: 1.75rem 1rem;
+      color: white;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1rem;
+      align-items: center;
+      position: relative;
+    }
+
+    .wf-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #ff9933 33%, white 33%, white 66%, #138808 66%);
+    }
+
+    .wf-hero-text h3 {
+      font-size: 0.9rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 0.4rem;
+    }
+
+    .wf-hero-text h3 span { color: #ffb74d; }
+    .wf-hero-p { font-size: 0.6rem; color: rgba(255,255,255,0.75); margin-bottom: 0.6rem; }
+
+    .wf-hero-btns { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .wf-btn {
+      padding: 0.3rem 0.65rem;
+      font-size: 0.6rem;
+      font-weight: 700;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .wf-btn-primary { background: var(--gov-navy); color: white; }
+    .wf-btn-saffron { background: var(--gov-saffron); color: black; }
+    .wf-btn-outline-w { background: transparent; color: white; border: 1.5px solid white; }
+    .wf-btn-outline { background: transparent; color: var(--gov-navy); border: 1.5px solid var(--gov-navy); }
+    .wf-btn-green { background: var(--gov-green); color: white; }
+
+    .wf-track-card {
+      background: white;
+      border-radius: 6px;
+      padding: 0.85rem;
+      color: #0f172a;
+      border-top: 3px solid var(--gov-saffron);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .wf-tc-h { font-size: 0.7rem; font-weight: 700; color: var(--gov-navy); margin-bottom: 0.15rem; }
+    .wf-tc-p { font-size: 0.55rem; color: #64748b; margin-bottom: 0.5rem; }
+    .wf-input-mock {
+      background: var(--bg-light);
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 0.3rem 0.5rem;
+      font-size: 0.6rem;
+      color: #94a3b8;
+      margin-bottom: 0.35rem;
+      width: 100%;
+    }
+
+    .wf-stats-row {
+      background: white;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .wf-stat {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 0.6rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .wf-stat:last-child { border-right: none; }
+
+    .wf-stat-icon {
+      width: 28px; height: 28px;
+      background: #eff6ff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .wf-stat-val { font-size: 0.75rem; font-weight: 800; color: var(--gov-navy); }
+    .wf-stat-lbl { font-size: 0.55rem; color: #64748b; }
+
+    .wf-section {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .wf-section-hdr {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.65rem;
+    }
+
+    .wf-section-title { font-size: 0.8rem; font-weight: 800; color: var(--gov-navy); }
+    .wf-section-link { font-size: 0.6rem; color: var(--gov-blue); }
+
+    .wf-cards-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .wf-card {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.65rem;
+      border-top: 2.5px solid var(--gov-navy);
+    }
+
+    .wf-card-icon {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .wf-card-title { font-size: 0.65rem; font-weight: 700; color: var(--gov-navy); margin-bottom: 0.15rem; }
+    .wf-card-desc { font-size: 0.55rem; color: #64748b; margin-bottom: 0.35rem; }
+    .wf-card-meta { font-size: 0.5rem; color: #94a3b8; margin-bottom: 0.3rem; }
+
+    .wf-footer {
+      background: #0c1c36;
+      padding: 0.85rem 1rem;
+      color: rgba(255,255,255,0.75);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      border-top: 3px solid var(--gov-saffron);
+    }
+
+    .wf-footer-col h5 { font-size: 0.65rem; color: white; margin-bottom: 0.35rem; }
+    .wf-footer-col p, .wf-footer-col a { font-size: 0.55rem; color: rgba(255,255,255,0.55); display: block; margin-bottom: 0.15rem; text-decoration: none; }
+    .wf-footer-bottom {
+      background: rgba(0,0,0,0.3);
+      padding: 0.4rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.55rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* Services Page Wireframe */
+    .wf-page-header {
+      background: var(--gov-navy);
+      padding: 0.85rem 1rem;
+      color: white;
+      border-bottom: 3px solid var(--gov-saffron);
+    }
+
+    .wf-ph-title { font-size: 0.9rem; font-weight: 800; margin-bottom: 0.15rem; }
+    .wf-ph-sub { font-size: 0.6rem; color: rgba(255,255,255,0.75); }
+
+    .wf-search-row {
+      background: var(--bg-light);
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-end;
+    }
+
+    .wf-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .wf-form-label { font-size: 0.6rem; font-weight: 700; color: var(--gov-navy); }
+
+    .wf-catalog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; padding: 1rem; }
+
+    .wf-catalog-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.75rem;
+      border-left: 3px solid var(--gov-navy);
+    }
+
+    .wf-cc-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem; }
+    .wf-cc-icon { font-size: 1rem; }
+    .wf-cc-dept { font-size: 0.5rem; font-weight: 700; color: #64748b; background: var(--bg-gray); padding: 0.1rem 0.35rem; border-radius: 2px; }
+    .wf-cc-title { font-size: 0.65rem; font-weight: 700; color: var(--gov-navy); margin-bottom: 0.15rem; }
+    .wf-cc-desc { font-size: 0.55rem; color: #64748b; margin-bottom: 0.35rem; }
+    .wf-cc-meta { font-size: 0.5rem; color: #94a3b8; margin-bottom: 0.3rem; }
+
+    /* Wizard Wireframe */
+    .wf-wizard-progress {
+      background: var(--bg-light);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      overflow: hidden;
+    }
+
+    .wf-wiz-tab {
+      flex: 1;
+      padding: 0.6rem 0.3rem;
+      text-align: center;
+      font-size: 0.58rem;
+      font-weight: 700;
+      color: #64748b;
+      border-bottom: 2.5px solid transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+    }
+
+    .wf-wiz-tab.wf-wiz-active {
+      color: var(--gov-navy);
+      border-bottom-color: var(--gov-saffron);
+      background: white;
+    }
+
+    .wf-wiz-tab.wf-wiz-done {
+      color: var(--gov-green);
+    }
+
+    .wf-step-num {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      color: #64748b;
+      font-size: 0.55rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+
+    .wf-wiz-tab.wf-wiz-active .wf-step-num {
+      background: var(--gov-navy);
+      color: white;
+    }
+
+    .wf-wiz-tab.wf-wiz-done .wf-step-num {
+      background: var(--gov-green);
+      color: white;
+    }
+
+    .wf-form-body { padding: 1rem; }
+    .wf-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.5rem; }
+    .wf-form-grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .wf-wizard-footer {
+      padding: 0.75rem 1rem;
+      border-top: 1px solid var(--border);
+      background: var(--bg-light);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Tracking Page Wireframe */
+    .wf-track-result {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      margin: 1rem;
+    }
+
+    .wf-track-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.75rem;
+    }
+
+    .wf-timeline {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      margin: 1.5rem 0.5rem 0.75rem;
+    }
+
+    .wf-timeline::before {
+      content: '';
+      position: absolute;
+      top: 18px; left: 0; right: 0;
+      height: 3px;
+      background: #e2e8f0;
+      z-index: 1;
+    }
+
+    .wf-timeline-fill {
+      position: absolute;
+      top: 18px; left: 0;
+      height: 3px;
+      background: var(--gov-green);
+      z-index: 2;
+      width: 80%;
+    }
+
+    .wf-node {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 70px;
+    }
+
+    .wf-node-circle {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 800;
+      margin-bottom: 0.35rem;
+      color: #94a3b8;
+    }
+
+    .wf-node.done .wf-node-circle { background: var(--gov-green); border-color: var(--gov-green); color: white; }
+    .wf-node.current .wf-node-circle {
+      background: var(--gov-navy);
+      border-color: var(--gov-saffron);
+      color: white;
+      box-shadow: 0 0 0 3px rgba(245,124,0,0.25);
+    }
+
+    .wf-node-label { font-size: 0.5rem; font-weight: 700; color: #475569; line-height: 1.2; }
+
+    /* Dashboard Wireframe */
+    .wf-dash-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      background: var(--bg-light);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .wf-metric-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.65rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .wf-metric-icon {
+      width: 30px; height: 30px;
+      border-radius: 6px;
+      background: #eff6ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .wf-metric-val { font-size: 0.9rem; font-weight: 800; color: var(--gov-navy); }
+    .wf-metric-lbl { font-size: 0.5rem; color: #64748b; }
+
+    .wf-table-card {
+      margin: 1rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .wf-table-head {
+      background: var(--bg-gray);
+      padding: 0.5rem 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .wf-th { font-size: 0.65rem; font-weight: 700; color: var(--gov-navy); }
+    .wf-mock-table { width: 100%; border-collapse: collapse; }
+    .wf-mock-table th {
+      background: #f1f5f9;
+      padding: 0.4rem 0.6rem;
+      font-size: 0.55rem;
+      font-weight: 700;
+      color: var(--gov-navy);
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .wf-mock-table td {
+      padding: 0.4rem 0.6rem;
+      font-size: 0.55rem;
+      border-bottom: 1px solid var(--border);
+      color: #475569;
+    }
+
+    .wf-pill {
+      display: inline-block;
+      padding: 0.1rem 0.4rem;
+      border-radius: 999px;
+      font-size: 0.5rem;
+      font-weight: 700;
+    }
+
+    .pill-green { background: #dcfce7; color: #166534; }
+    .pill-blue { background: #dbeafe; color: #1e40af; }
+    .pill-yellow { background: #fef3c7; color: #92400e; }
+
+    /* Certificate Wireframe */
+    .wf-cert-frame {
+      background: white;
+      border: 8px solid var(--gov-navy);
+      outline: 2px solid var(--gov-saffron);
+      outline-offset: -5px;
+      margin: 1rem;
+      padding: 1.5rem;
+    }
+
+    .wf-cert-header { text-align: center; border-bottom: 1.5px solid var(--border); padding-bottom: 0.75rem; margin-bottom: 1rem; }
+    .wf-cert-emblem { font-size: 1.5rem; }
+    .wf-cert-title { font-size: 0.85rem; font-weight: 800; color: var(--gov-navy); text-transform: uppercase; }
+    .wf-cert-subtitle { font-size: 0.7rem; color: var(--gov-saffron); font-weight: 700; }
+    .wf-cert-body { font-size: 0.65rem; color: #334155; line-height: 1.7; margin-bottom: 1rem; }
+    .wf-cert-footer { display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid var(--border); padding-top: 0.65rem; }
+    .wf-qr-box { width: 55px; height: 55px; border: 1.5px solid #000; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+    .wf-sign-box { text-align: right; font-size: 0.55rem; color: #334155; }
+
+    /* Design System Swatches */
+    .color-palette { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 1rem 0; }
+    .swatch { width: 80px; text-align: center; }
+    .swatch-block { width: 80px; height: 55px; border-radius: 6px; border: 1px solid rgba(0,0,0,0.08); margin-bottom: 0.25rem; }
+    .swatch-name { font-size: 0.7rem; font-weight: 700; color: #334155; }
+    .swatch-hex { font-size: 0.6rem; color: #64748b; font-family: 'Courier New', monospace; }
+
+    .typography-row { display: flex; flex-direction: column; gap: 0.5rem; margin: 1rem 0; }
+    .typo-sample { border-bottom: 1px dashed var(--border); padding-bottom: 0.5rem; display: flex; align-items: baseline; gap: 1.5rem; }
+    .typo-label { font-size: 0.7rem; color: #64748b; min-width: 100px; }
+
+    /* UX Flow Diagram */
+    .flow-diagram { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0; }
+    .flow-box {
+      background: #eff6ff;
+      border: 1.5px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 0.5rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gov-navy);
+      text-align: center;
+    }
+
+    .flow-arrow { color: var(--gov-saffron); font-size: 1.2rem; font-weight: 800; }
+    .flow-decision {
+      background: #fefce8;
+      border: 1.5px solid #fef08a;
+      border-radius: 0;
+      transform: rotate(45deg);
+      width: 60px; height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flow-decision span { transform: rotate(-45deg); font-size: 0.6rem; font-weight: 700; text-align: center; line-height: 1.2; }
+
+    /* Spacing table */
+    .spacing-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; }
+    .spacing-item { display: flex; flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+    .spacing-box { background: #dbeafe; border-left: 3px solid var(--gov-blue); }
+    .spacing-label { font-size: 0.7rem; font-weight: 700; color: #1e40af; }
+    .spacing-val { font-size: 0.6rem; color: #64748b; }
+
+    /* Grievance Wireframe */
+    .wf-grv-body { padding: 0.75rem 1rem; }
+    .wf-grv-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+
+    /* Component Showcase */
+    .component-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0; }
+    .component-card {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .component-name { font-size: 0.75rem; font-weight: 700; color: var(--gov-navy); margin-bottom: 0.65rem; }
+
+    /* Wf label chips */
+    .wf-chip {
+      display: inline-block;
+      background: rgba(245,124,0,0.12);
+      color: #b25000;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      margin: 0.15rem;
+      letter-spacing: 0.3px;
+    }
+
+    .annot-number {
+      display: inline-flex;
+      width: 18px; height: 18px;
+      background: var(--gov-saffron);
+      color: black;
+      font-size: 0.65rem;
+      font-weight: 800;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      margin-right: 0.25rem;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Toolbar -->
+<div class="doc-toolbar no-print">
+  <div class="toolbar-brand">e-SevaConnect &bull; <span>Week 2: UI/UX Design & Wireframing Document</span></div>
+  <div class="toolbar-actions">
+    <a href="../index.html" class="btn-toolbar btn-back">← Back to Portal</a>
+    <button class="btn-toolbar btn-print" onclick="window.print()">🖨️ Print / Save as PDF</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ============================================================
+       COVER PAGE
+       ============================================================ -->
+  <div class="cover-page">
+    <div class="cover-emblem">🏛️</div>
+    <div class="cover-authority">Internship Certification Project &bull; Junior Web Developer — E-Governance & Digital Services</div>
+    <h1>e-SevaConnect: E-Governance &amp; Citizen Digital Services Portal</h1>
+    <div class="cover-subtitle">Week 2 Task: UI/UX Design, High-Fidelity Wireframing &amp; Prototype Specification</div>
+    <div class="cover-tricolor"></div>
+    <p style="font-size:0.9rem; color: var(--text-gray); max-width: 640px; margin: 0 auto 1.5rem;">
+      A comprehensive design document presenting high-fidelity wireframes for all 7 portal pages, full design system specification, annotated UX rationale, citizen navigation journey maps, interactive component library, and accessibility compliance guidelines adhering to GIGW 3.0 and WCAG 2.1 Level AA standards.
+    </p>
+    <div class="cover-meta-grid">
+      <div><strong>Internship Track:</strong> Junior Web Developer — E-Governance & Digital Services</div>
+      <div><strong>Submission Week:</strong> Week 2 of 4</div>
+      <div><strong>Module:</strong> UX Research, Wireframing & Prototype Specification</div>
+      <div><strong>Effort Estimate:</strong> 30–35 Hours</div>
+      <div><strong>Pages Wireframed:</strong> 7 Key Pages (5+ Required)</div>
+      <div><strong>Accessibility Standard:</strong> WCAG 2.1 Level AA / GIGW 3.0</div>
+      <div><strong>Wireframing Approach:</strong> In-line HTML/CSS High-Fidelity Embedded Frames</div>
+      <div><strong>Date:</strong> October 2026</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       1. TABLE OF CONTENTS
+       ============================================================ -->
+  <div class="section-block">
+    <h2 class="section-title">📋 Table of Contents</h2>
+    <ol style="font-size: 0.9rem; color: var(--text-gray);">
+      <li style="margin-bottom: 0.35rem;">UX Research &amp; Design Strategy</li>
+      <li style="margin-bottom: 0.35rem;">Design System Specification (Color, Typography, Spacing, Components)</li>
+      <li style="margin-bottom: 0.35rem;">Citizen Navigation Journey Maps &amp; Information Architecture</li>
+      <li style="margin-bottom: 0.35rem;"><strong>Wireframe 1:</strong> Homepage — Citizen Portal Entry &amp; Quick Tracker</li>
+      <li style="margin-bottom: 0.35rem;"><strong>Wireframe 2:</strong> Services Catalog — Searchable Public Directory</li>
+      <li style="margin-bottom: 0.35rem;"><strong>Wireframe 3:</strong> Online Application Wizard — Multi-Step Digital Form</li>
+      <li style="margin-bottom: 0.35rem;"><strong>Wireframe 4:</strong> Application Tracking — Live Milestone Status Engine</li>
+      <li style="margin-bottom: 0.35rem;"><strong>Wireframe 5:</strong> Citizen Dashboard — Self-Service Records Management</li>
+      <li style="margin-bottom: 0.35rem;"><strong>Wireframe 6:</strong> Grievance Redressal Portal — Public Complaint Desk</li>
+      <li style="margin-bottom: 0.35rem;"><strong>Wireframe 7:</strong> Digital E-Certificate — Verified Document View</li>
+      <li style="margin-bottom: 0.35rem;">Interactive Component Library</li>
+      <li style="margin-bottom: 0.35rem;">Accessibility &amp; Inclusive Design Implementation</li>
+      <li style="margin-bottom: 0.35rem;">Design Process, Challenges &amp; Rationale</li>
+      <li style="margin-bottom: 0.35rem;">Design-to-Development Handoff Notes</li>
+    </ol>
+  </div>
+
+  <!-- ============================================================
+       2. UX RESEARCH & DESIGN STRATEGY
+       ============================================================ -->
+  <div class="section-block">
+    <h2 class="section-title">🔬 1. UX Research &amp; Design Strategy</h2>
+
+    <h3 class="sub-section">1.1 Design Principles for E-Governance Portals</h3>
+    <p>
+      Citizen-facing government portals require adherence to fundamentally different UX principles compared to commercial web applications. The primary objectives shift from persuasion and conversion to <strong>clarity, trust, accessibility, and efficiency</strong>. The following design principles govern every design decision in e-SevaConnect:
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>Principle</th><th>Definition</th><th>Application in e-SevaConnect</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Universal Design First</strong></td>
+          <td>Interfaces must be functional for all citizens regardless of age, ability, or device.</td>
+          <td>High-contrast mode toggle, 3-level font resizer, screen-reader semantic HTML, keyboard-only navigation.</td>
+        </tr>
+        <tr>
+          <td><strong>Cognitive Load Reduction</strong></td>
+          <td>Complex government forms broken into digestible, guided sequential steps.</td>
+          <td>4-step wizard replaces large monolithic form; step tabs indicate progress context.</td>
+        </tr>
+        <tr>
+          <td><strong>Trust &amp; Official Tone</strong></td>
+          <td>Visual language must convey institutional authority and governmental credibility.</td>
+          <td>National color palette, official emblem, GIGW-compliant header, tricolor decorative strip.</td>
+        </tr>
+        <tr>
+          <td><strong>Transparent Progress</strong></td>
+          <td>Citizens must always know where they are and what happens next.</td>
+          <td>Real-time 5-stage tracking timeline with officer remarks and estimated dates.</td>
+        </tr>
+        <tr>
+          <td><strong>Mobile-First Responsive</strong></td>
+          <td>Majority of rural users access via entry-level smartphones on 3G/4G.</td>
+          <td>Fluid responsive grid, compact mobile navigation, touch-friendly tap targets (min 44×44px).</td>
+        </tr>
+        <tr>
+          <td><strong>Error Prevention &amp; Recovery</strong></td>
+          <td>Validation before submission prevents frustrating server-side rejections.</td>
+          <td>Inline client-side validation with contextual toast messages and field-level error hints.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub-section">1.2 Competitive UX Analysis Summary</h3>
+    <p>
+      Prior to wireframing, a heuristic evaluation was conducted on three benchmark Indian e-governance portals (<strong>UMANG, MahaOnline, ServicePlus</strong>) against Nielsen's 10 Usability Heuristics:
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>Heuristic</th><th>UMANG</th><th>MahaOnline</th><th>e-SevaConnect Solution</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Visibility of System Status</td>
+          <td>⚠️ Partial</td>
+          <td>❌ Missing</td>
+          <td>✅ Real-time tracker with 5 milestone stages and live remarks.</td>
+        </tr>
+        <tr>
+          <td>Recognition over Recall</td>
+          <td>⚠️ Partial</td>
+          <td>⚠️ Partial</td>
+          <td>✅ Icon-labeled service cards; visual step tabs show current position.</td>
+        </tr>
+        <tr>
+          <td>Error Prevention</td>
+          <td>⚠️ Server-side only</td>
+          <td>⚠️ Server-side only</td>
+          <td>✅ Client-side inline validation with specific error messages per field.</td>
+        </tr>
+        <tr>
+          <td>Accessibility</td>
+          <td>❌ WCAG Fail</td>
+          <td>❌ WCAG Fail</td>
+          <td>✅ WCAG 2.1 AA — 4.5:1 contrast, focus indicators, alt text, skip links.</td>
+        </tr>
+        <tr>
+          <td>Help &amp; Documentation</td>
+          <td>⚠️ Minimal</td>
+          <td>⚠️ Minimal</td>
+          <td>✅ Inline tooltips, SLA timelines, document checklist per service card.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub-section">1.3 User Research Insights Driving Design Decisions</h3>
+    <p>Based on the three detailed user personas defined in Week 1, the following UX requirements were extracted:</p>
+    <ul>
+      <li><span class="wf-chip">Ramesh (Rural, Low-lit.)</span> Large icons, minimal text in catalog cards; local draft auto-save in wizard; one-click printable receipt.</li>
+      <li><span class="wf-chip">Ananya (Urban, Tech-savvy)</span> Keyboard-navigable search, real-time tracking with officer names, instant verifiable certificate download.</li>
+      <li><span class="wf-chip">Prabhakar (Senior, Low-vision)</span> Prominent A+/A++ resizer in top bar, high-contrast toggle, minimum 44px tap targets, no tiny dropdowns.</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================
+       3. DESIGN SYSTEM
+       ============================================================ -->
+  <div class="section-block">
+    <h2 class="section-title">🎨 2. Design System Specification</h2>
+
+    <h3 class="sub-section">2.1 Color Palette — Official Government Brand Tokens</h3>
+    <p>
+      The color system is derived from the Indian national identity (Ashoka Navy, Saffron, Emerald Green) and enriched with neutral utility tones. All color pairs meet the WCAG 2.1 minimum 4.5:1 contrast ratio for normal text.
+    </p>
+
+    <div class="color-palette">
+      <div class="swatch">
+        <div class="swatch-block" style="background:#142d54;"></div>
+        <div class="swatch-name">Gov Navy</div>
+        <div class="swatch-hex">#142d54</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#0c1c36;"></div>
+        <div class="swatch-name">Navy Dark</div>
+        <div class="swatch-hex">#0c1c36</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#1e457f;"></div>
+        <div class="swatch-name">Navy Light</div>
+        <div class="swatch-hex">#1e457f</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#f57c00;"></div>
+        <div class="swatch-name">Gov Saffron</div>
+        <div class="swatch-hex">#f57c00</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#2e7d32;"></div>
+        <div class="swatch-name">Gov Emerald</div>
+        <div class="swatch-hex">#2e7d32</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#1976d2;"></div>
+        <div class="swatch-name">Accent Blue</div>
+        <div class="swatch-hex">#1976d2</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#f8fafc; border: 1px solid #e2e8f0;"></div>
+        <div class="swatch-name">Bg Light</div>
+        <div class="swatch-hex">#f8fafc</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#64748b;"></div>
+        <div class="swatch-name">Text Muted</div>
+        <div class="swatch-hex">#64748b</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#ef4444;"></div>
+        <div class="swatch-name">Status Error</div>
+        <div class="swatch-hex">#ef4444</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#10b981;"></div>
+        <div class="swatch-name">Status OK</div>
+        <div class="swatch-hex">#10b981</div>
+      </div>
+    </div>
+
+    <div class="annotation-box">
+      <strong>📌 Design Rationale — Color System:</strong> The Ashoka Navy (#142d54) is used as the primary authority color for headers, navigation, and primary CTAs. Saffron (#f57c00) is reserved for primary interactive CTAs and accent highlights, drawing attention without overwhelming the interface. The tricolor strip (saffron–white–green at 3px height) appears at the bottom of the hero section as a subtle constitutional identity marker, consistent with GIGW 3.0 branding requirements. All semantic status colors (green for success, amber for pending, red for errors, blue for info) follow universal UX conventions and are never communicated by color alone — icons and labels always accompany them.
+    </div>
+
+    <h3 class="sub-section">2.2 High-Contrast Accessibility Theme (WCAG AAA)</h3>
+    <p>Citizens can activate a one-click High-Contrast theme from the top utility bar. This override applies CSS custom property substitutions globally:</p>
+
+    <table>
+      <thead><tr><th>Token</th><th>Default Value</th><th>High-Contrast Override</th><th>Contrast Ratio</th></tr></thead>
+      <tbody>
+        <tr><td>Body Background</td><td>#f8fafc</td><td>#000000</td><td>—</td></tr>
+        <tr><td>Body Text</td><td>#0f172a</td><td>#ffffff</td><td>21:1 ✅</td></tr>
+        <tr><td>Primary Nav Background</td><td>#142d54</td><td>#000000</td><td>—</td></tr>
+        <tr><td>Link / CTA Accent</td><td>#f57c00</td><td>#ffff00</td><td>19.6:1 ✅</td></tr>
+        <tr><td>Card Background</td><td>#ffffff</td><td>#121212</td><td>—</td></tr>
+        <tr><td>Focus Outline</td><td>#f57c00 (3px)</td><td>#ffff00 (4px)</td><td>Exceeds AAA</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub-section">2.3 Typography Scale</h3>
+    <p>Base font: <strong>Segoe UI / Inter / System UI</strong> — system-safe, zero web font dependency, universally legible.</p>
+
+    <div class="typography-row">
+      <div class="typo-sample">
+        <span class="typo-label">H1 / Portal Title</span>
+        <span style="font-size: 2rem; font-weight: 800; color: var(--gov-navy);">e-SevaConnect</span>
+        <span style="font-size: 0.75rem; color: #94a3b8;">2rem / 800 / Navy</span>
+      </div>
+      <div class="typo-sample">
+        <span class="typo-label">H2 / Section Header</span>
+        <span style="font-size: 1.5rem; font-weight: 700; color: var(--gov-navy);">Public Services</span>
+        <span style="font-size: 0.75rem; color: #94a3b8;">1.5rem / 700 / Navy</span>
+      </div>
+      <div class="typo-sample">
+        <span class="typo-label">H3 / Card Title</span>
+        <span style="font-size: 1.1rem; font-weight: 700; color: var(--gov-navy);">Income Certificate</span>
+        <span style="font-size: 0.75rem; color: #94a3b8;">1.1rem / 700 / Navy</span>
+      </div>
+      <div class="typo-sample">
+        <span class="typo-label">Body / Description</span>
+        <span style="font-size: 0.95rem; color: #475569;">Annual household income verification for scholarship eligibility.</span>
+        <span style="font-size: 0.75rem; color: #94a3b8;">0.95rem / 400 / Gray</span>
+      </div>
+      <div class="typo-sample">
+        <span class="typo-label">Caption / Meta</span>
+        <span style="font-size: 0.78rem; color: #94a3b8;">⏱ SLA: 7 Working Days &bull; Fee: ₹20</span>
+        <span style="font-size: 0.75rem; color: #94a3b8;">0.78rem / 500 / Light</span>
+      </div>
+    </div>
+
+    <h3 class="sub-section">2.4 Spacing System (8px Base Grid)</h3>
+    <p>All spacing uses a consistent 8px base unit ensuring visual rhythm and alignment across components:</p>
+    <div class="spacing-grid">
+      <div class="spacing-item">
+        <div class="spacing-box" style="width:4px; height:24px;"></div>
+        <div class="spacing-label">xs</div><div class="spacing-val">4px</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box" style="width:8px; height:24px;"></div>
+        <div class="spacing-label">sm</div><div class="spacing-val">8px</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box" style="width:12px; height:24px;"></div>
+        <div class="spacing-label">md</div><div class="spacing-val">12px</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box" style="width:20px; height:24px;"></div>
+        <div class="spacing-label">lg</div><div class="spacing-val">20px</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box" style="width:32px; height:24px;"></div>
+        <div class="spacing-label">xl</div><div class="spacing-val">32px</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box" style="width:48px; height:24px;"></div>
+        <div class="spacing-label">2xl</div><div class="spacing-val">48px</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box" style="width:64px; height:24px;"></div>
+        <div class="spacing-label">3xl</div><div class="spacing-val">64px</div>
+      </div>
+    </div>
+
+    <h3 class="sub-section">2.5 Border Radius &amp; Elevation (Shadow Levels)</h3>
+    <table>
+      <thead><tr><th>Level</th><th>Border Radius</th><th>Shadow</th><th>Usage</th></tr></thead>
+      <tbody>
+        <tr><td>sm</td><td>4px</td><td>0 1px 3px rgba(0,0,0,.08)</td><td>Badges, Chips, Tags</td></tr>
+        <tr><td>md</td><td>8px</td><td>0 4px 6px rgba(0,0,0,.1)</td><td>Cards, Input Fields, Buttons</td></tr>
+        <tr><td>lg</td><td>12px</td><td>0 10px 15px rgba(0,0,0,.1)</td><td>Modals, Dropdowns, Floating Cards</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============================================================
+       4. NAVIGATION FLOW
+       ============================================================ -->
+  <div class="section-block">
+    <h2 class="section-title">🗺️ 3. Citizen Navigation Journey Map &amp; Information Architecture</h2>
+
+    <h3 class="sub-section">3.1 Primary User Flows</h3>
+
+    <h4 class="sub-sub">Flow A — Service Application Journey (Most Common)</h4>
+    <div class="flow-diagram">
+      <div class="flow-box">Home</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Services Catalog</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Apply Wizard<br><small>Step 1–4</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Success Modal<br><small>+ Tracking ID</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Track Status</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Download<br>Certificate</div>
+    </div>
+
+    <h4 class="sub-sub">Flow B — Direct Status Check</h4>
+    <div class="flow-diagram">
+      <div class="flow-box">Home (Hero<br>Quick-Track)</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Enter ID</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Track Page<br><small>Auto-populated</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">View Status<br>Timeline</div>
+    </div>
+
+    <h4 class="sub-sub">Flow C — Grievance Filing</h4>
+    <div class="flow-diagram">
+      <div class="flow-box">Home</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Grievance<br>Portal</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Fill Form<br><small>Dept + Category</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Ticket ID<br>Generated</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Track via<br>Dashboard</div>
+    </div>
+
+    <h3 class="sub-section">3.2 Information Architecture — Site Map</h3>
+    <p>The portal's information architecture is organized into a flat, 3-level hierarchy to minimize cognitive depth for rural users:</p>
+    <div style="background: var(--bg-light); padding: 1.25rem; border-radius: 6px; border: 1px solid var(--border); font-size: 0.85rem;">
+      <div style="font-weight: 800; color: var(--gov-navy); font-size: 1rem; margin-bottom: 1rem; text-align: center;">e-SevaConnect Portal — Site Map</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.5rem;">
+        <div style="background: var(--gov-navy); color: white; padding: 0.6rem; border-radius: 4px; text-align: center; font-size: 0.75rem; font-weight: 700;">Home (index.html)</div>
+        <div style="background: var(--gov-navy); color: white; padding: 0.6rem; border-radius: 4px; text-align: center; font-size: 0.75rem; font-weight: 700;">Services (services.html)</div>
+        <div style="background: var(--gov-navy); color: white; padding: 0.6rem; border-radius: 4px; text-align: center; font-size: 0.75rem; font-weight: 700;">Apply (apply.html)</div>
+        <div style="background: var(--gov-navy); color: white; padding: 0.6rem; border-radius: 4px; text-align: center; font-size: 0.75rem; font-weight: 700;">Track (track.html)</div>
+        <div style="background: var(--gov-navy); color: white; padding: 0.6rem; border-radius: 4px; text-align: center; font-size: 0.75rem; font-weight: 700;">Grievance (grievance.html)</div>
+        <div style="background: var(--gov-navy); color: white; padding: 0.6rem; border-radius: 4px; text-align: center; font-size: 0.75rem; font-weight: 700;">Dashboard (dashboard.html)</div>
+        <div style="background: #1e457f; color: white; padding: 0.6rem; border-radius: 4px; text-align: center; font-size: 0.75rem; font-weight: 700;">Certificate (certificate-view.html)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       WIREFRAME 1: HOMEPAGE
+       ============================================================ -->
+  <div class="section-block wireframe-section">
+    <h2 class="section-title">📄 Wireframe 1 — Homepage: Citizen Portal Entry &amp; Quick Tracker</h2>
+    <p><strong>URL:</strong> <code>index.html</code> | <strong>Purpose:</strong> Portal landing page serving as the primary entry point for all citizen journeys with immediate access to Quick Status Tracking.</p>
+
+    <div class="wireframe-wrapper">
+      <div class="wireframe-label">Wireframe 1 — High-Fidelity: Homepage (Desktop 1200px)</div>
+      <div class="wf-browser">
+        <div class="wf-browser-bar">
+          <div class="wf-dots">
+            <div class="wf-dot wf-dot-r"></div>
+            <div class="wf-dot wf-dot-y"></div>
+            <div class="wf-dot wf-dot-g"></div>
+          </div>
+          <div class="wf-url-bar">🔒 esevaconnect.gov.in/index.html</div>
+        </div>
+        <div class="wf-body">
+          <!-- Util Bar -->
+          <div class="wf-util-bar">
+            <div class="wf-util-text">🇮🇳 GOVERNMENT OF INDIA • DIGITAL SERVICES INITIATIVE</div>
+            <div class="wf-util-btns">
+              <span class="wf-util-btn">◐ High Contrast</span>
+              <span class="wf-util-btn">A</span>
+              <span class="wf-util-btn">A+</span>
+              <span class="wf-util-btn">A++</span>
+              <span class="wf-util-btn">Skip to Content</span>
+            </div>
+          </div>
+          <!-- Header -->
+          <div class="wf-header">
+            <div class="wf-brand">
+              <div class="wf-logo">🏛</div>
+              <div>
+                <div class="wf-title">e-SevaConnect</div>
+                <div class="wf-tagline">Unified Citizen Public Services Delivery & Grievance Portal</div>
+              </div>
+            </div>
+            <div style="font-size: 0.65rem; background: #fee2e2; color: #991b1b; padding: 0.25rem 0.65rem; border-radius: 4px; border: 1px solid #fca5a5; display: flex; align-items: center; gap: 0.25rem;">
+              📞 Toll-Free: 1800-111-2026
+            </div>
+          </div>
+          <!-- Navbar -->
+          <div class="wf-navbar">
+            <div class="wf-nav-item wf-active">Home</div>
+            <div class="wf-nav-item">Services Catalog</div>
+            <div class="wf-nav-item">Apply Online</div>
+            <div class="wf-nav-item">Track Application</div>
+            <div class="wf-nav-item">Grievance Redressal</div>
+            <div class="wf-nav-item">Citizen Dashboard</div>
+          </div>
+          <!-- Hero -->
+          <div class="wf-hero">
+            <div class="wf-hero-text">
+              <h3>Empowering Citizens with <span>Fast, Transparent &amp; Paperless</span> E-Governance</h3>
+              <div class="wf-hero-p">Access critical public certificates, revenue documentation, social welfare schemes, and citizen services from the comfort of your home with zero physical queues.</div>
+              <div class="wf-hero-btns">
+                <div class="wf-btn wf-btn-saffron">Browse All Services →</div>
+                <div class="wf-btn wf-btn-outline-w">Start New Application</div>
+              </div>
+            </div>
+            <div class="wf-track-card">
+              <div class="wf-tc-h">🔍 Quick Application Status</div>
+              <div class="wf-tc-p">Enter your unique Reference Tracking ID to inspect real-time progress.</div>
+              <div style="font-size: 0.55rem; font-weight: 700; color: #334155; margin-bottom: 0.2rem;">Application Reference ID *</div>
+              <div class="wf-input-mock">e.g. ESC-2026-8812</div>
+              <div class="wf-btn wf-btn-primary" style="width:100%; text-align:center; padding: 0.35rem;">Check Live Status</div>
+              <div style="font-size: 0.5rem; color: #94a3b8; margin-top: 0.3rem; text-align: center;">Try: ESC-2026-8812 (Issued) | ESC-2026-3401</div>
+            </div>
+          </div>
+          <!-- Stats -->
+          <div class="wf-stats-row">
+            <div class="wf-stat">
+              <div class="wf-stat-icon">📄</div>
+              <div><div class="wf-stat-val">14.2L+</div><div class="wf-stat-lbl">Applications Processed</div></div>
+            </div>
+            <div class="wf-stat">
+              <div class="wf-stat-icon">🎖️</div>
+              <div><div class="wf-stat-val">13.8L+</div><div class="wf-stat-lbl">Certificates Issued</div></div>
+            </div>
+            <div class="wf-stat">
+              <div class="wf-stat-icon">⚡</div>
+              <div><div class="wf-stat-val">4.2 Days</div><div class="wf-stat-lbl">Avg. Turnaround Time</div></div>
+            </div>
+            <div class="wf-stat">
+              <div class="wf-stat-icon">⭐</div>
+              <div><div class="wf-stat-val">98.7%</div><div class="wf-stat-lbl">Citizen Satisfaction</div></div>
+            </div>
+          </div>
+          <!-- Services Section -->
+          <div class="wf-section">
+            <div class="wf-section-hdr">
+              <div class="wf-section-title">Most In-Demand Public Services</div>
+              <div class="wf-section-link">Explore All 40+ Services →</div>
+            </div>
+            <div class="wf-cards-row">
+              <div class="wf-card">
+                <div class="wf-card-icon">💰</div>
+                <div class="wf-card-title">Income Certificate</div>
+                <div class="wf-card-desc">Annual household income verification for welfare eligibility.</div>
+                <div class="wf-card-meta">⏱ 7 Days • 💳 ₹20</div>
+                <div class="wf-btn wf-btn-primary" style="font-size:0.55rem; padding: 0.25rem 0.5rem; width: 100%; text-align: center;">Apply Online</div>
+              </div>
+              <div class="wf-card">
+                <div class="wf-card-icon">🏠</div>
+                <div class="wf-card-title">Domicile Certificate</div>
+                <div class="wf-card-desc">Proof of residence for higher education and employment.</div>
+                <div class="wf-card-meta">⏱ 10 Days • 💳 ₹20</div>
+                <div class="wf-btn wf-btn-primary" style="font-size:0.55rem; padding: 0.25rem 0.5rem; width: 100%; text-align: center;">Apply Online</div>
+              </div>
+              <div class="wf-card">
+                <div class="wf-card-icon">📜</div>
+                <div class="wf-card-title">Caste Validity</div>
+                <div class="wf-card-desc">Verification of community credentials for reservation.</div>
+                <div class="wf-card-meta">⏱ 15 Days • 💳 ₹30</div>
+                <div class="wf-btn wf-btn-primary" style="font-size:0.55rem; padding: 0.25rem 0.5rem; width: 100%; text-align: center;">Apply Online</div>
+              </div>
+            </div>
+          </div>
+          <!-- Footer -->
+          <div class="wf-footer">
+            <div class="wf-footer-col">
+              <h5>e-SevaConnect Portal</h5>
+              <p>National E-Governance Initiative under Digital India framework.</p>
+            </div>
+            <div class="wf-footer-col">
+              <h5>Quick Links</h5>
+              <a href="#">Portal Home</a><a href="#">Services</a><a href="#">Apply</a><a href="#">Track</a>
+            </div>
+            <div class="wf-footer-col">
+              <h5>Legal</h5>
+              <a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">GIGW Compliance</a>
+            </div>
+            <div class="wf-footer-col">
+              <h5>Support</h5>
+              <a href="#">Toll-Free: 1800-111-2026</a><a href="#">Mon–Sat, 9AM–6PM</a>
+            </div>
+          </div>
+          <div class="wf-footer-bottom">
+            <span>© 2026 e-SevaConnect. Government of India Initiative.</span>
+            <span>GIGW 3.0 Compliant | WCAG 2.1 AA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="annotation-box">
+      <strong>📌 Wireframe 1 Annotations:</strong>
+      <ol style="margin-top: 0.5rem; margin-left: 1.25rem;">
+        <li><strong>Top Utility Bar (Accessibility Zone):</strong> Placed at the very top per GIGW 3.0 mandate. Contains High-Contrast toggle, 3-level font resizer (A/A+/A++), and Skip-to-Content link. Background is Ashoka Navy Dark to contrast with white text.</li>
+        <li><strong>Branding Header (Trust Anchor):</strong> Government emblem with portal title and official tagline instills trust. Toll-free emergency number in a muted alert style (red-tinted) maintains urgency without dominating.</li>
+        <li><strong>Sticky Navigation Bar:</strong> Ashoka Navy (#142d54) background with saffron bottom-border highlight on active page. Text is white at 85% opacity, active page at 100%. Sticky positioning ensures navigation is always accessible when scrolling long service lists.</li>
+        <li><strong>Hero Split Layout (70/30):</strong> Left column (70%) captures headline impact; right column (30%) houses the Quick Track Card. The card has a 4px saffron top-border, serving as the most prominent CTA for returning users with an existing reference number.</li>
+        <li><strong>Tricolor Accent Strip:</strong> A 4px bottom-border of saffron–white–green marks the hero boundary as a subtle national identity element per GIGW guidelines.</li>
+        <li><strong>Statistics Ribbon:</strong> 4 key performance metrics displayed immediately below the hero. These build institutional trust and demonstrate portal efficiency before citizens commit to using the service.</li>
+        <li><strong>Service Cards Grid (3-column):</strong> Consistent card anatomy: Department icon → Department badge → Title → Short description → Meta (SLA + Fee) → Primary CTA. Hover state adds a 4px saffron top-border animation.</li>
+        <li><strong>Footer (GIGW Required):</strong> 4-column layout with mandatory links: Privacy Policy, Terms of Use, GIGW 3.0 compliance statement, and helpdesk contact.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       WIREFRAME 2: SERVICES CATALOG
+       ============================================================ -->
+  <div class="section-block wireframe-section page-break">
+    <h2 class="section-title">📄 Wireframe 2 — Services Catalog: Searchable Public Directory</h2>
+    <p><strong>URL:</strong> <code>services.html</code> | <strong>Purpose:</strong> Allow citizens to discover, filter, and compare all available government services before initiating an application.</p>
+
+    <div class="wireframe-wrapper">
+      <div class="wireframe-label">Wireframe 2 — High-Fidelity: Services Catalog Page</div>
+      <div class="wf-browser">
+        <div class="wf-browser-bar">
+          <div class="wf-dots"><div class="wf-dot wf-dot-r"></div><div class="wf-dot wf-dot-y"></div><div class="wf-dot wf-dot-g"></div></div>
+          <div class="wf-url-bar">🔒 esevaconnect.gov.in/services.html</div>
+        </div>
+        <div class="wf-body">
+          <div class="wf-util-bar">
+            <div class="wf-util-text">🇮🇳 GOVERNMENT OF INDIA • DIGITAL SERVICES DIRECTORY</div>
+            <div class="wf-util-btns"><span class="wf-util-btn">◐</span><span class="wf-util-btn">A</span><span class="wf-util-btn">A+</span></div>
+          </div>
+          <div class="wf-header">
+            <div class="wf-brand">
+              <div class="wf-logo">🏛</div>
+              <div><div class="wf-title">e-SevaConnect</div><div class="wf-tagline">Official Directory of Public Digital Services</div></div>
+            </div>
+            <div style="font-size: 0.55rem; background: #fee2e2; color: #991b1b; padding: 0.25rem 0.65rem; border-radius: 4px; border: 1px solid #fca5a5;">📞 1800-111-2026</div>
+          </div>
+          <div class="wf-navbar">
+            <div class="wf-nav-item">Home</div>
+            <div class="wf-nav-item wf-active">Services Catalog</div>
+            <div class="wf-nav-item">Apply Online</div>
+            <div class="wf-nav-item">Track Application</div>
+            <div class="wf-nav-item">Grievance Redressal</div>
+            <div class="wf-nav-item">Citizen Dashboard</div>
+          </div>
+          <div class="wf-page-header">
+            <div class="wf-ph-title">Citizen Public Services Catalog</div>
+            <div class="wf-ph-sub">Search through all state and municipal digital services. Review eligibility criteria, documents, and fees before applying.</div>
+          </div>
+          <!-- Search & Filter Row -->
+          <div class="wf-search-row">
+            <div class="wf-form-group" style="flex: 1;">
+              <div class="wf-form-label">Search by Service Keyword or Department</div>
+              <div class="wf-input-mock" style="width: 100%;">🔍 Type e.g. 'Income', 'Pension', 'Caste', 'Ration'...</div>
+            </div>
+            <div class="wf-form-group" style="min-width: 180px;">
+              <div class="wf-form-label">Filter by Department</div>
+              <div class="wf-input-mock" style="width: 100%;">All Departments ▼</div>
+            </div>
+          </div>
+          <div style="padding: 0.4rem 1rem; background: #f8fafc; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 0.55rem; color: #64748b;">
+            <span id="results-lbl">Showing 8 public services</span>
+            <span>💡 Tip: Click "Apply Online" to start the instant wizard.</span>
+          </div>
+          <!-- Catalog Grid 2×4 -->
+          <div class="wf-catalog-grid">
+            <div class="wf-catalog-card">
+              <div class="wf-cc-top"><div class="wf-cc-icon">💰</div><div class="wf-cc-dept">Revenue &amp; Land</div></div>
+              <div class="wf-cc-title">Income Certificate</div>
+              <div class="wf-cc-desc">Statutory proof of annual income issued by SDM/Tehsildar for scholarship, fee concession eligibility.</div>
+              <div class="wf-cc-meta">⏱ 7 Working Days &nbsp;|&nbsp; 📋 Salary Slip / Form 16 &nbsp;|&nbsp; 💳 ₹20</div>
+              <div class="wf-btn wf-btn-primary" style="font-size:0.55rem; padding: 0.25rem 0.5rem; width: 100%; text-align: center;">Apply Online</div>
+            </div>
+            <div class="wf-catalog-card">
+              <div class="wf-cc-top"><div class="wf-cc-icon">🏠</div><div class="wf-cc-dept">Revenue &amp; Land</div></div>
+              <div class="wf-cc-title">Domicile &amp; Residence Certificate</div>
+              <div class="wf-cc-desc">Legal certification of 15+ years state residence for college admissions and civil services.</div>
+              <div class="wf-cc-meta">⏱ 10 Working Days &nbsp;|&nbsp; 📋 Electricity Bill, Aadhaar &nbsp;|&nbsp; 💳 ₹20</div>
+              <div class="wf-btn wf-btn-primary" style="font-size:0.55rem; padding: 0.25rem 0.5rem; width: 100%; text-align: center;">Apply Online</div>
+            </div>
+            <div class="wf-catalog-card">
+              <div class="wf-cc-top"><div class="wf-cc-icon">📜</div><div class="wf-cc-dept">Social Justice</div></div>
+              <div class="wf-cc-title">Caste Validity Certificate</div>
+              <div class="wf-cc-desc">Scrutiny and validation of community credentials from District Caste Scrutiny Committee.</div>
+              <div class="wf-cc-meta">⏱ 15 Working Days &nbsp;|&nbsp; 📋 Genealogy Tree, 1950 Proof &nbsp;|&nbsp; 💳 ₹30</div>
+              <div class="wf-btn wf-btn-primary" style="font-size:0.55rem; padding: 0.25rem 0.5rem; width: 100%; text-align: center;">Apply Online</div>
+            </div>
+            <div class="wf-catalog-card">
+              <div class="wf-cc-top"><div class="wf-cc-icon">👴</div><div class="wf-cc-dept">Social Welfare</div></div>
+              <div class="wf-cc-title">Senior Citizen Pension Scheme</div>
+              <div class="wf-cc-desc">Monthly DBT grant for citizens aged 60+ without financial support under NSAP scheme.</div>
+              <div class="wf-cc-meta">⏱ 12 Working Days &nbsp;|&nbsp; 📋 Age Proof, BPL Card &nbsp;|&nbsp; 💳 Free</div>
+              <div class="wf-btn wf-btn-primary" style="font-size:0.55rem; padding: 0.25rem 0.5rem; width: 100%; text-align: center;">Apply Online</div>
+            </div>
+          </div>
+          <div class="wf-footer-bottom" style="border-top: 1px solid var(--border);">
+            <span>© 2026 e-SevaConnect. Government of India Initiative.</span>
+            <span>Showing page 1 of 3 &nbsp;|&nbsp; Next →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="annotation-box">
+      <strong>📌 Wireframe 2 Annotations:</strong>
+      <ol style="margin-top: 0.5rem; margin-left: 1.25rem;">
+        <li><strong>Dual Search &amp; Filter Bar:</strong> Keyword search (debounced 200ms to prevent CPU strain on rural devices) + dropdown department filter work in conjunction. The result count updates live to give Citizens real-time feedback on their filter scope.</li>
+        <li><strong>Catalog Card Anatomy:</strong> Standardized card structure — Icon → Department Badge → Title → Short Description (≤2 lines) → Meta row (SLA + Documents required + Fee) → Primary CTA. The left border color changes to saffron on hover, signaling interactivity. This prevents confusion for users on first government portal visit.</li>
+        <li><strong>Department Badge:</strong> Color-coded background chips tag each service to its administrative department, helping users build mental models of where services belong without needing to read the title.</li>
+        <li><strong>SLA Transparency:</strong> Processing time, required documents, and government fees are shown before clicking Apply, preventing abandoned applications due to missing documents at the form stage.</li>
+        <li><strong>2-Column Grid on Desktop:</strong> Wider cards allow full document checklists to be visible without truncation. On mobile this collapses to a single column with fully expanded meta sections.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       WIREFRAME 3: APPLICATION WIZARD
+       ============================================================ -->
+  <div class="section-block wireframe-section page-break">
+    <h2 class="section-title">📄 Wireframe 3 — Online Application Wizard: Multi-Step Digital Form</h2>
+    <p><strong>URL:</strong> <code>apply.html</code> | <strong>Purpose:</strong> Guide citizens through a structured, validated, 4-step online application form that reduces cognitive load compared to traditional single-page government forms.</p>
+
+    <div class="wireframe-wrapper">
+      <div class="wireframe-label">Wireframe 3 — Step 1 View: Citizen Demographics (Active State)</div>
+      <div class="wf-browser">
+        <div class="wf-browser-bar">
+          <div class="wf-dots"><div class="wf-dot wf-dot-r"></div><div class="wf-dot wf-dot-y"></div><div class="wf-dot wf-dot-g"></div></div>
+          <div class="wf-url-bar">🔒 esevaconnect.gov.in/apply.html?service=income-cert</div>
+        </div>
+        <div class="wf-body">
+          <div class="wf-util-bar">
+            <div class="wf-util-text">🇮🇳 GOVERNMENT OF INDIA • DIGITAL APPLICATION DESK</div>
+            <div class="wf-util-btns"><span class="wf-util-btn">◐</span><span class="wf-util-btn">A+</span></div>
+          </div>
+          <div class="wf-header">
+            <div class="wf-brand"><div class="wf-logo">🏛</div><div><div class="wf-title">e-SevaConnect</div><div class="wf-tagline">Online Citizen Service Application Desk</div></div></div>
+            <div style="font-size: 0.55rem; background: #fee2e2; color: #991b1b; padding: 0.25rem 0.65rem; border-radius: 4px; border: 1px solid #fca5a5;">📞 1800-111-2026</div>
+          </div>
+          <div class="wf-navbar">
+            <div class="wf-nav-item">Home</div><div class="wf-nav-item">Services Catalog</div>
+            <div class="wf-nav-item wf-active">Apply Online</div>
+            <div class="wf-nav-item">Track Application</div><div class="wf-nav-item">Grievance Redressal</div><div class="wf-nav-item">Citizen Dashboard</div>
+          </div>
+          <div class="wf-page-header">
+            <div class="wf-ph-title">Online Service Application Desk</div>
+            <div class="wf-ph-sub">Follow the 4-step guided wizard to register your application. Submission generates an official legal tracking number.</div>
+          </div>
+          <!-- Wizard Card -->
+          <div style="margin: 0.75rem; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: white;">
+            <!-- Step Progress Tabs -->
+            <div class="wf-wizard-progress">
+              <div class="wf-wiz-tab wf-wiz-active"><span class="wf-step-num">1</span> Citizen Demographics</div>
+              <div class="wf-wiz-tab"><span class="wf-step-num">2</span> Service Particulars</div>
+              <div class="wf-wiz-tab"><span class="wf-step-num">3</span> Document Uploads</div>
+              <div class="wf-wiz-tab"><span class="wf-step-num">4</span> Review &amp; Submit</div>
+            </div>
+            <!-- Step 1 Form -->
+            <div class="wf-form-body">
+              <div style="font-size: 0.75rem; font-weight: 700; color: var(--gov-navy); margin-bottom: 0.2rem;">Step 1: Service Selection &amp; Citizen Identity</div>
+              <div style="font-size: 0.55rem; color: #64748b; margin-bottom: 0.75rem;">Ensure your details match your legal identity documents (Aadhaar / Voter ID).</div>
+              <!-- Service Select -->
+              <div style="margin-bottom: 0.5rem;">
+                <div class="wf-form-label">Select Public Service *</div>
+                <div class="wf-input-mock">Income Certificate (Revenue) ▼</div>
+              </div>
+              <!-- Row 1 -->
+              <div class="wf-form-grid">
+                <div>
+                  <div class="wf-form-label">Full Name of Applicant *</div>
+                  <div class="wf-input-mock">e.g. Ramesh Kumar Patil</div>
+                </div>
+                <div>
+                  <div class="wf-form-label">Father / Spouse Name *</div>
+                  <div class="wf-input-mock">e.g. Kumar Shripad Patil</div>
+                </div>
+              </div>
+              <!-- Row 2 -->
+              <div class="wf-form-grid wf-form-grid-3" style="margin-top: 0.4rem;">
+                <div>
+                  <div class="wf-form-label">Date of Birth *</div>
+                  <div class="wf-input-mock">DD/MM/YYYY</div>
+                </div>
+                <div>
+                  <div class="wf-form-label">Gender *</div>
+                  <div class="wf-input-mock">Select Gender ▼</div>
+                </div>
+                <div>
+                  <div class="wf-form-label">Mobile Number *</div>
+                  <div class="wf-input-mock">10-digit mobile</div>
+                </div>
+              </div>
+              <!-- Row 3 -->
+              <div class="wf-form-grid" style="margin-top: 0.4rem;">
+                <div>
+                  <div class="wf-form-label">Email Address (Optional)</div>
+                  <div class="wf-input-mock">applicant@email.com</div>
+                </div>
+                <div>
+                  <div class="wf-form-label">12-Digit Aadhaar UID *</div>
+                  <div class="wf-input-mock">123456789012</div>
+                </div>
+              </div>
+              <!-- Row 4 -->
+              <div style="margin-top: 0.4rem;">
+                <div class="wf-form-label">Residential Address *</div>
+                <div class="wf-input-mock" style="height: 28px; width: 100%;">House / Flat No., Street, Village / Colony...</div>
+              </div>
+              <!-- Row 5 -->
+              <div class="wf-form-grid" style="margin-top: 0.4rem;">
+                <div>
+                  <div class="wf-form-label">District *</div>
+                  <div class="wf-input-mock">-- Select Residential District -- ▼</div>
+                </div>
+                <div>
+                  <div class="wf-form-label">Postal PIN Code *</div>
+                  <div class="wf-input-mock">6-digit PIN</div>
+                </div>
+              </div>
+            </div>
+            <div class="wf-wizard-footer">
+              <div style="font-size: 0.55rem; color: #64748b;">* All fields marked with asterisk are mandatory</div>
+              <div class="wf-btn wf-btn-primary" style="font-size: 0.6rem;">Next: Service Particulars →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="annotation-box">
+      <strong>📌 Wireframe 3 Annotations:</strong>
+      <ol style="margin-top: 0.5rem; margin-left: 1.25rem;">
+        <li><strong>4-Step Progress Bar Tabs:</strong> Horizontal tab strip with numbered circle indicators. Active tab (saffron bottom-border + navy circle), completed tabs (green circle with ✓), pending tabs (gray). Citizens can always see their current position and total steps — this directly addresses the "lost in the form" anxiety common on government portals.</li>
+        <li><strong>URL Service Pre-selection:</strong> When navigating from services.html card buttons (<code>apply.html?service=income-cert</code>), the service dropdown auto-populates, reducing redundant re-entry.</li>
+        <li><strong>Mandatory Field Indicator:</strong> Red asterisk (*) on labels following WCAG F81 guidance. A legend "* All fields marked with asterisk are mandatory" is placed in the wizard footer to avoid confusion for first-time users.</li>
+        <li><strong>Field Grouping Logic:</strong> Related fields are grouped in 2-3 column grids: Name fields together, Date/Gender/Mobile as a triplet (personal attributes), Email/Aadhaar as security pair. This reduces visual scanning distance and creates logical chunking.</li>
+        <li><strong>Aadhaar Field Behavior:</strong> Accepts only 12 digits; upon blur applies masking to show only last 4 digits (XXXX-XXXX-1234) per DPDP Act 2023 privacy obligations.</li>
+        <li><strong>Step Navigation:</strong> "Next" button validates the current step before proceeding; "Back" button navigates without validation loss. Step inputs are preserved in browser localStorage to prevent data loss on browser refresh.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       WIREFRAME 4: TRACKING PAGE
+       ============================================================ -->
+  <div class="section-block wireframe-section page-break">
+    <h2 class="section-title">📄 Wireframe 4 — Application Tracking: Live Milestone Status Engine</h2>
+    <p><strong>URL:</strong> <code>track.html</code> | <strong>Purpose:</strong> Eliminate the "status black hole" — give citizens complete real-time visibility into their application's current processing stage, assigned officer, and expected completion date.</p>
+
+    <div class="wireframe-wrapper">
+      <div class="wireframe-label">Wireframe 4 — Status Result View (ESC-2026-8812: Approved / Issued State)</div>
+      <div class="wf-browser">
+        <div class="wf-browser-bar">
+          <div class="wf-dots"><div class="wf-dot wf-dot-r"></div><div class="wf-dot wf-dot-y"></div><div class="wf-dot wf-dot-g"></div></div>
+          <div class="wf-url-bar">🔒 esevaconnect.gov.in/track.html?id=ESC-2026-8812</div>
+        </div>
+        <div class="wf-body">
+          <div class="wf-util-bar">
+            <div class="wf-util-text">🇮🇳 APPLICATION TRACKING ENGINE</div>
+            <div class="wf-util-btns"><span class="wf-util-btn">◐</span><span class="wf-util-btn">A</span><span class="wf-util-btn">A+</span></div>
+          </div>
+          <div class="wf-header">
+            <div class="wf-brand"><div class="wf-logo">🏛</div><div><div class="wf-title">e-SevaConnect</div><div class="wf-tagline">Real-Time Application Status & Verification Tracker</div></div></div>
+            <div style="font-size: 0.55rem; background: #fee2e2; color: #991b1b; padding: 0.25rem 0.65rem; border-radius: 4px; border: 1px solid #fca5a5;">📞 1800-111-2026</div>
+          </div>
+          <div class="wf-navbar">
+            <div class="wf-nav-item">Home</div><div class="wf-nav-item">Services Catalog</div><div class="wf-nav-item">Apply Online</div>
+            <div class="wf-nav-item wf-active">Track Application</div>
+            <div class="wf-nav-item">Grievance Redressal</div><div class="wf-nav-item">Citizen Dashboard</div>
+          </div>
+          <div class="wf-page-header">
+            <div class="wf-ph-title">Application Progress &amp; Status Tracker</div>
+            <div class="wf-ph-sub">Transparent, immutable tracking across verification, field enquiry, and final digital approval milestones.</div>
+          </div>
+          <!-- Lookup Bar -->
+          <div style="background: white; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); display: flex; gap: 0.5rem; align-items: flex-end;">
+            <div style="flex: 1;">
+              <div class="wf-form-label">Enter Application Reference ID *</div>
+              <div class="wf-input-mock" style="width:100%; border-color: var(--gov-navy);">ESC-2026-8812</div>
+            </div>
+            <div class="wf-btn wf-btn-primary" style="font-size: 0.65rem; height: 26px; display: flex; align-items: center;">Track Status 🔍</div>
+          </div>
+          <!-- Result Card -->
+          <div class="wf-track-result">
+            <!-- Header Meta -->
+            <div class="wf-track-header">
+              <div>
+                <div style="font-size: 0.5rem; font-weight: 700; background: #f1f5f9; color: #64748b; display: inline-block; padding: 0.1rem 0.4rem; border-radius: 2px; margin-bottom: 0.2rem;">Revenue &amp; Land Records</div>
+                <div style="font-size: 0.85rem; font-weight: 800; color: var(--gov-navy);">Income Certificate</div>
+                <div style="font-size: 0.55rem; color: #64748b;">Application ID: <strong style="color: var(--gov-navy);">ESC-2026-8812</strong> | Applicant: <strong>Ramesh K. Patil</strong></div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-size: 0.5rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Current Status</div>
+                <span class="wf-pill pill-green" style="font-size: 0.6rem; padding: 0.2rem 0.65rem; margin-top: 0.15rem; display: inline-block;">✅ Issued</span>
+              </div>
+            </div>
+            <!-- Timeline -->
+            <div class="wf-timeline" role="progressbar">
+              <div class="wf-timeline-fill"></div>
+              <div class="wf-node done"><div class="wf-node-circle">✓</div><div class="wf-node-label">Application<br>Submitted</div></div>
+              <div class="wf-node done"><div class="wf-node-circle">✓</div><div class="wf-node-label">Desk<br>Scrutiny</div></div>
+              <div class="wf-node done"><div class="wf-node-circle">✓</div><div class="wf-node-label">Field<br>Enquiry</div></div>
+              <div class="wf-node done"><div class="wf-node-circle">✓</div><div class="wf-node-label">Tehsildar<br>Approval</div></div>
+              <div class="wf-node done"><div class="wf-node-circle">✓</div><div class="wf-node-label">Certificate<br>Issued</div></div>
+            </div>
+            <!-- Officer Remarks -->
+            <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 4px; padding: 0.65rem 0.75rem; font-size: 0.6rem; margin-top: 0.5rem;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                <div>
+                  <div style="font-size: 0.5rem; text-transform: uppercase; font-weight: 700; color: #64748b; margin-bottom: 0.15rem;">Assigned Officer</div>
+                  <div style="font-weight: 700; color: #0f172a;">S. Sharma, Tehsildar (Executive Magistrate)</div>
+                  <div style="color: #64748b; margin-top: 0.1rem;">Applied: 01 Oct 2026</div>
+                </div>
+                <div>
+                  <div style="font-size: 0.5rem; text-transform: uppercase; font-weight: 700; color: #64748b; margin-bottom: 0.15rem;">Statutory Remarks</div>
+                  <div style="font-style: italic; color: #334155;">"All revenue records verified. Digitally signed certificate issued."</div>
+                </div>
+              </div>
+            </div>
+            <!-- Actions -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.65rem; padding-top: 0.5rem; border-top: 1px solid var(--border);">
+              <div class="wf-btn wf-btn-outline" style="font-size: 0.55rem; padding: 0.25rem 0.6rem;">🖨️ Print Status Report</div>
+              <div class="wf-btn wf-btn-saffron" style="font-size: 0.6rem; padding: 0.35rem 0.75rem;">📜 View &amp; Download Verified E-Certificate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="annotation-box">
+      <strong>📌 Wireframe 4 Annotations:</strong>
+      <ol style="margin-top: 0.5rem; margin-left: 1.25rem;">
+        <li><strong>Auto-Populated URL Param:</strong> Tracking ID from the homepage Quick Tracker pre-fills the input field via URL query string (<code>?id=ESC-2026-8812</code>), so citizens don't re-type. This reduces friction for the most common return visit scenario.</li>
+        <li><strong>5-Stage Visual Timeline:</strong> Horizontal milestone strip with circles (✓ done = green, current = navy + saffron ring, pending = gray). A green fill bar animates to indicate progress percentage. Node labels are placed below for clarity. On mobile, this collapses to a vertical list with left-rail color coding.</li>
+        <li><strong>Officer Accountability Panel:</strong> Displays the assigned processing officer's name, designation, and the date of application. This creates personal accountability and gives citizens a reference for in-person follow-up if needed.</li>
+        <li><strong>Saffron "Download Certificate" CTA:</strong> The highest-priority action (for approved applications) uses the saffron primary color with maximum visibility. It only appears when <code>statusStep ≥ 4</code>, preventing premature download attempts.</li>
+        <li><strong>Quick Test Buttons:</strong> Pre-labeled sample IDs (Issued, Under Verification, Submitted) are provided as accessibility quick-actions for testers and first-time demo users without needing to know actual IDs.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       WIREFRAME 5: CITIZEN DASHBOARD
+       ============================================================ -->
+  <div class="section-block wireframe-section page-break">
+    <h2 class="section-title">📄 Wireframe 5 — Citizen Dashboard: Self-Service Records Management</h2>
+    <p><strong>URL:</strong> <code>dashboard.html</code> | <strong>Purpose:</strong> Provide a unified, at-a-glance overview of all submitted applications, their current statuses, issued certificates, and active grievances.</p>
+
+    <div class="wireframe-wrapper">
+      <div class="wireframe-label">Wireframe 5 — High-Fidelity: Citizen Dashboard (Desktop)</div>
+      <div class="wf-browser">
+        <div class="wf-browser-bar">
+          <div class="wf-dots"><div class="wf-dot wf-dot-r"></div><div class="wf-dot wf-dot-y"></div><div class="wf-dot wf-dot-g"></div></div>
+          <div class="wf-url-bar">🔒 esevaconnect.gov.in/dashboard.html</div>
+        </div>
+        <div class="wf-body">
+          <div class="wf-util-bar">
+            <div class="wf-util-text">🇮🇳 CITIZEN SELF-SERVICE DASHBOARD</div>
+            <div class="wf-util-btns"><span class="wf-util-btn">◐</span><span class="wf-util-btn">A</span><span class="wf-util-btn">A+</span></div>
+          </div>
+          <div class="wf-header">
+            <div class="wf-brand"><div class="wf-logo">🏛</div><div><div class="wf-title">e-SevaConnect</div><div class="wf-tagline">Citizen Services Management & Digital Locker Desk</div></div></div>
+            <div class="wf-btn wf-btn-saffron" style="font-size: 0.6rem; padding: 0.35rem 0.75rem;">+ New Application</div>
+          </div>
+          <div class="wf-navbar">
+            <div class="wf-nav-item">Home</div><div class="wf-nav-item">Services Catalog</div><div class="wf-nav-item">Apply Online</div><div class="wf-nav-item">Track Application</div><div class="wf-nav-item">Grievance Redressal</div>
+            <div class="wf-nav-item wf-active">Citizen Dashboard</div>
+          </div>
+          <div class="wf-page-header">
+            <div class="wf-ph-title">Welcome to Your Citizen Dashboard</div>
+            <div class="wf-ph-sub">View applications, monitor pending approvals, download issued certificates, and track grievances.</div>
+          </div>
+          <!-- Metrics -->
+          <div class="wf-dash-metrics">
+            <div class="wf-metric-card">
+              <div class="wf-metric-icon" style="background: #eff6ff;">📑</div>
+              <div><div class="wf-metric-val" style="color: #1d4ed8;">3</div><div class="wf-metric-lbl">Total Applications</div></div>
+            </div>
+            <div class="wf-metric-card">
+              <div class="wf-metric-icon" style="background: #fef3c7;">⏳</div>
+              <div><div class="wf-metric-val" style="color: #b45309;">2</div><div class="wf-metric-lbl">In Progress</div></div>
+            </div>
+            <div class="wf-metric-card">
+              <div class="wf-metric-icon" style="background: #dcfce7;">✅</div>
+              <div><div class="wf-metric-val" style="color: #15803d;">1</div><div class="wf-metric-lbl">Issued Certificates</div></div>
+            </div>
+            <div class="wf-metric-card">
+              <div class="wf-metric-icon" style="background: #fee2e2;">📣</div>
+              <div><div class="wf-metric-val" style="color: #b91c1c;">1</div><div class="wf-metric-lbl">Active Grievances</div></div>
+            </div>
+          </div>
+          <!-- Applications Table -->
+          <div class="wf-table-card">
+            <div class="wf-table-head">
+              <div class="wf-th">My Submitted Applications</div>
+              <span style="font-size: 0.55rem; color: #64748b;">Synced in Real-Time with State Registry</span>
+            </div>
+            <table class="wf-mock-table">
+              <thead>
+                <tr>
+                  <th>Reference ID</th>
+                  <th>Service Name</th>
+                  <th>Department</th>
+                  <th>Applied Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: 700; color: var(--gov-navy);">ESC-2026-8812</td>
+                  <td>Income Certificate</td>
+                  <td>Revenue &amp; Land</td>
+                  <td>01 Oct 2026</td>
+                  <td><span class="wf-pill pill-green">Issued</span></td>
+                  <td>
+                    <span class="wf-pill pill-blue" style="cursor: pointer; margin-right: 3px;">Track</span>
+                    <span class="wf-pill" style="background: var(--gov-navy); color: white; cursor: pointer;">Certificate</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 700; color: var(--gov-navy);">ESC-2026-3401</td>
+                  <td>Domicile Certificate</td>
+                  <td>Revenue &amp; Land</td>
+                  <td>04 Oct 2026</td>
+                  <td><span class="wf-pill pill-blue">Under Verification</span></td>
+                  <td><span class="wf-pill pill-blue" style="cursor: pointer;">Track</span></td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 700; color: var(--gov-navy);">ESC-2026-5190</td>
+                  <td>Caste Validity Certificate</td>
+                  <td>Social Justice</td>
+                  <td>06 Oct 2026</td>
+                  <td><span class="wf-pill pill-yellow">Submitted</span></td>
+                  <td><span class="wf-pill pill-blue" style="cursor: pointer;">Track</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="annotation-box">
+      <strong>📌 Wireframe 5 Annotations:</strong>
+      <ol style="margin-top: 0.5rem; margin-left: 1.25rem;">
+        <li><strong>4 KPI Metric Cards:</strong> Color-coded summary at the top (blue = total, amber = in-progress, green = issued, red = grievances). Each uses a semantic icon + number + label. The icon colors map to status semantic colors used throughout the portal for visual consistency.</li>
+        <li><strong>Data Table Design:</strong> Striped rows (alternating white/light-gray) for readability with a minimum row height of 44px (touch-friendly). The last "Actions" column provides contextual action pills: "Track" (always available) and "Certificate" (only when status = Issued).</li>
+        <li><strong>Status Badge Pills:</strong> Consistent pill-shaped status indicators with semantic color + text label. Color is never the only differentiator — text labels are always visible for color-blind users. Mapping: Green = Issued, Blue = Under Verification/In-Progress, Yellow = Submitted/Pending.</li>
+        <li><strong>"+ New Application" Top-Right CTA:</strong> Persistent application start button placed in the header area for quick access without requiring citizens to scroll to a section. Uses saffron primary styling for maximum visibility.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       WIREFRAME 6: GRIEVANCE PORTAL
+       ============================================================ -->
+  <div class="section-block wireframe-section page-break">
+    <h2 class="section-title">📄 Wireframe 6 — Grievance Redressal Portal: Public Complaint Desk</h2>
+    <p><strong>URL:</strong> <code>grievance.html</code> | <strong>Purpose:</strong> CPGRAMS-aligned complaint filing system with auto-generated ticket IDs and statutory 7-day resolution SLA enforcement.</p>
+
+    <div class="wireframe-wrapper">
+      <div class="wireframe-label">Wireframe 6 — Grievance Filing Form (Empty State)</div>
+      <div class="wf-browser">
+        <div class="wf-browser-bar">
+          <div class="wf-dots"><div class="wf-dot wf-dot-r"></div><div class="wf-dot wf-dot-y"></div><div class="wf-dot wf-dot-g"></div></div>
+          <div class="wf-url-bar">🔒 esevaconnect.gov.in/grievance.html</div>
+        </div>
+        <div class="wf-body">
+          <div class="wf-util-bar"><div class="wf-util-text">🇮🇳 CITIZEN GRIEVANCE HELPDESK</div></div>
+          <div class="wf-header">
+            <div class="wf-brand"><div class="wf-logo">🏛</div><div><div class="wf-title">e-SevaConnect</div><div class="wf-tagline">Centralized Public Grievance Redress System (CPGRAMS Aligned)</div></div></div>
+            <div style="font-size: 0.55rem; background: #fee2e2; color: #991b1b; padding: 0.25rem 0.65rem; border-radius: 4px; border: 1px solid #fca5a5;">📞 Grievance Helpline: 1800-111-2026</div>
+          </div>
+          <div class="wf-navbar">
+            <div class="wf-nav-item">Home</div><div class="wf-nav-item">Services Catalog</div><div class="wf-nav-item">Apply Online</div><div class="wf-nav-item">Track Application</div>
+            <div class="wf-nav-item wf-active">Grievance Redressal</div>
+            <div class="wf-nav-item">Citizen Dashboard</div>
+          </div>
+          <div class="wf-page-header">
+            <div class="wf-ph-title">Public Grievance Redressal Portal</div>
+            <div class="wf-ph-sub">File complaints regarding service delays, unfair rejections, or portal errors. Enforced with a statutory 7-day resolution charter.</div>
+          </div>
+          <div style="margin: 0.75rem; border: 1px solid var(--border); border-radius: 6px; background: white; padding: 1rem;">
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--gov-navy); margin-bottom: 0.5rem;">📝 Lodge a New Citizen Grievance</div>
+            <div style="font-size: 0.55rem; color: #64748b; margin-bottom: 0.75rem;">Every grievance generates a unique tracking Ticket ID. Officers failing to resolve within 7 days face automated District Collectorate escalation.</div>
+            <div class="wf-grv-form-grid">
+              <div>
+                <div class="wf-form-label">Concerned Department *</div>
+                <div class="wf-input-mock" style="width: 100%;">-- Select Government Department -- ▼</div>
+              </div>
+              <div>
+                <div class="wf-form-label">Nature of Grievance *</div>
+                <div class="wf-input-mock" style="width: 100%;">-- Select Grievance Nature -- ▼</div>
+              </div>
+              <div>
+                <div class="wf-form-label">Related Application Tracking ID (Optional)</div>
+                <div class="wf-input-mock" style="width: 100%;">e.g. ESC-2026-8812</div>
+              </div>
+              <div>
+                <div class="wf-form-label">Urgency / Severity Level *</div>
+                <div class="wf-input-mock" style="width: 100%;">Normal (SLA: 7 Working Days) ▼</div>
+              </div>
+            </div>
+            <div style="margin-top: 0.4rem;">
+              <div class="wf-form-label">Grievance Subject / Short Summary *</div>
+              <div class="wf-input-mock" style="width: 100%;">Brief subject line summarizing the issue</div>
+            </div>
+            <div style="margin-top: 0.4rem;">
+              <div class="wf-form-label">Detailed Incident Description *</div>
+              <div class="wf-input-mock" style="width: 100%; height: 40px; line-height: 40px;">Provide complete facts, dates, officer names, and difficulties faced...</div>
+            </div>
+            <div style="margin-top: 0.4rem;">
+              <div class="wf-form-label">Attach Supporting Evidence (Optional)</div>
+              <div style="border: 1.5px dashed #cbd5e1; border-radius: 4px; padding: 0.6rem; text-align: center; background: #f8fafc; font-size: 0.55rem; color: #64748b;">
+                📁 Click or drag PDF/image evidence (Max 5MB)
+              </div>
+            </div>
+            <div style="margin-top: 0.65rem; display: flex; justify-content: flex-end;">
+              <div class="wf-btn wf-btn-saffron" style="font-size: 0.65rem; padding: 0.35rem 1rem;">Submit Official Grievance Ticket →</div>
+            </div>
+          </div>
+          <!-- SLA Info Box -->
+          <div style="margin: 0 0.75rem 0.75rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; padding: 0.6rem 0.75rem; font-size: 0.55rem; color: #1e40af;">
+            <strong>📋 SLA Charter:</strong> Normal complaints → 7 days | Urgent → 3 days | Emergency / Medical → 24 hours. Unresolved tickets auto-escalate to District Collectorate.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="annotation-box">
+      <strong>📌 Wireframe 6 Annotations:</strong>
+      <ol style="margin-top: 0.5rem; margin-left: 1.25rem;">
+        <li><strong>2-Column Form Grid:</strong> Department and Nature are placed side-by-side (related dropdowns), then Application ID and Urgency (reference + priority). This grouping follows a logical dependency: first identify the concern area, then characterize urgency.</li>
+        <li><strong>SLA Charter Info Box:</strong> Placed below the form as a reinforcement mechanism. Citizens see the resolution timelines after completing the form, ensuring they understand the process and don't re-file duplicate tickets out of impatience.</li>
+        <li><strong>File Upload Dropzone:</strong> Dashed border with drag-and-drop affordance. Evidence is optional to lower barriers for non-document-holding citizens. Accepted formats and size limits are displayed inline.</li>
+        <li><strong>Success Modal After Submission:</strong> A centered modal overlay displays the auto-generated Ticket ID (GRV-2026-XXXX) in large bold typography with a saffron top-border card. Citizens are instructed to save this ID for tracking.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       WIREFRAME 7: DIGITAL E-CERTIFICATE
+       ============================================================ -->
+  <div class="section-block wireframe-section page-break">
+    <h2 class="section-title">📄 Wireframe 7 — Digital E-Certificate: Verified Document Viewer</h2>
+    <p><strong>URL:</strong> <code>certificate-view.html</code> | <strong>Purpose:</strong> Display a legally formatted, digitally signed government certificate with cryptographic QR code verification, ready for print or download as PDF.</p>
+
+    <div class="wireframe-wrapper">
+      <div class="wireframe-label">Wireframe 7 — E-Certificate Document View (Income Certificate)</div>
+      <div class="wf-browser">
+        <div class="wf-browser-bar">
+          <div class="wf-dots"><div class="wf-dot wf-dot-r"></div><div class="wf-dot wf-dot-y"></div><div class="wf-dot wf-dot-g"></div></div>
+          <div class="wf-url-bar">🔒 esevaconnect.gov.in/certificate-view.html?id=ESC-2026-8812</div>
+        </div>
+        <div class="wf-body" style="background: #f1f5f9; padding: 1rem;">
+          <!-- Actions bar -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <div class="wf-btn wf-btn-outline" style="font-size: 0.55rem; padding: 0.25rem 0.65rem;">← Back to Dashboard</div>
+            <div style="display: flex; gap: 0.5rem;">
+              <div class="wf-btn wf-btn-primary" style="font-size: 0.55rem; padding: 0.25rem 0.65rem;">🖨️ Print / Save as PDF</div>
+            </div>
+          </div>
+          <!-- Certificate Frame -->
+          <div class="wf-cert-frame">
+            <div class="wf-cert-header">
+              <div class="wf-cert-emblem">🏛️</div>
+              <div style="font-size: 0.55rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #475569; margin-bottom: 0.15rem;">GOVERNMENT OF INDIA • REVENUE & DISTRICT MAGISTRACY</div>
+              <div class="wf-cert-title">Official Digital E-Governance Certificate</div>
+              <div class="wf-cert-subtitle">Certificate of Annual Household Income</div>
+              <div style="font-size: 0.55rem; color: #64748b; margin-top: 0.25rem;">Ref. No: <strong style="color: var(--gov-navy);">ESC-2026-8812</strong> • Issued under Section 3 of State Citizen Services Guarantee Act</div>
+            </div>
+            <div class="wf-cert-body">
+              <p>This is to certify that <strong style="color: var(--gov-navy); border-bottom: 1px dotted var(--gov-navy);">Ramesh K. Patil</strong>, resident of District <strong style="color: var(--gov-navy); border-bottom: 1px dotted var(--gov-navy);">Pune</strong>, holding Aadhaar UID <strong style="color: var(--gov-navy);">XXXX-XXXX-9012</strong>, has been duly verified by the competent revenue authorities under the jurisdiction of the Department of <strong style="color: var(--gov-navy);">Revenue &amp; Land Records</strong>.</p>
+              <p style="margin-top: 0.5rem;">Based upon inquiry reports submitted by the Circle Inspector and scrutiny of official revenue registers, this statutory credential is hereby granted for all legal, educational, and welfare purposes.</p>
+            </div>
+            <div class="wf-cert-footer">
+              <div>
+                <div class="wf-qr-box">📱</div>
+                <div style="font-size: 0.5rem; color: #64748b; margin-top: 0.2rem; max-width: 80px;">Scan QR via UMANG/DigiLocker to verify</div>
+              </div>
+              <div class="wf-sign-box">
+                <div style="margin-bottom: 0.2rem;">Issue Date: <strong>01 Oct 2026</strong></div>
+                <div style="background: #eff6ff; border: 1px dashed #3b82f6; padding: 0.3rem 0.5rem; border-radius: 3px;">
+                  <div style="font-size: 0.5rem; color: #1e40af; font-weight: 700;">✅ DIGITALLY SIGNED</div>
+                  <div style="font-size: 0.6rem; font-weight: 800; color: var(--gov-navy);">S. Sharma, Tehsildar</div>
+                  <div style="font-size: 0.5rem; color: #64748b;">Competent Executive Magistrate</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="annotation-box">
+      <strong>📌 Wireframe 7 Annotations:</strong>
+      <ol style="margin-top: 0.5rem; margin-left: 1.25rem;">
+        <li><strong>Certificate Frame (Double-Border):</strong> Thick navy outer border + saffron inner outline creates the visual language of an official document seal, distinguishing it from regular portal pages. This is intentionally ornate to communicate authority and authenticity.</li>
+        <li><strong>Cryptographic QR Code:</strong> Positioned at the bottom-left as a verification anchor. When scanned via the UMANG or DigiLocker mobile app, it validates the certificate hash against the state registry. The QR is accompanied by a clear instruction label for users unfamiliar with QR scanning.</li>
+        <li><strong>Digital Signature Block:</strong> Blue-tinted box at the bottom-right displays "✅ DIGITALLY SIGNED" with officer name and designation. This follows the format of digitally signed PDF certificates across Indian government systems (IT Act 2000, Section 4 & 5 compliance).</li>
+        <li><strong>Print-Optimized CSS:</strong> Navigation, toolbar, and action buttons are hidden via <code>@media print</code> rules. The certificate renders at full page width with proper page-break handling for clean PDF generation.</li>
+        <li><strong>Applicant Data Population:</strong> All fields (name, Aadhaar masked, district, date) are dynamically populated from <code>localStorage</code> using the URL <code>?id=</code> parameter, ensuring the correct record's certificate is displayed.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       11. INTERACTIVE COMPONENT LIBRARY
+       ============================================================ -->
+  <div class="section-block">
+    <h2 class="section-title">🧩 11. Interactive Component Library</h2>
+    <p>The following reusable UI components form the design vocabulary of e-SevaConnect. All components are built with pure HTML/CSS — no external library dependencies.</p>
+
+    <h3 class="sub-section">11.1 Button System</h3>
+    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; padding: 1rem; background: var(--bg-light); border-radius: 6px; border: 1px solid var(--border); margin: 1rem 0;">
+      <button style="background: var(--gov-navy); color: white; border: none; padding: 0.65rem 1.25rem; border-radius: 6px; font-weight: 700; font-size: 0.875rem; cursor: pointer;">Primary (Navy)</button>
+      <button style="background: var(--gov-saffron); color: #000; border: none; padding: 0.65rem 1.25rem; border-radius: 6px; font-weight: 700; font-size: 0.875rem; cursor: pointer;">Saffron CTA</button>
+      <button style="background: transparent; color: var(--gov-navy); border: 2px solid var(--gov-navy); padding: 0.6rem 1.2rem; border-radius: 6px; font-weight: 700; font-size: 0.875rem; cursor: pointer;">Outline</button>
+      <button style="background: var(--gov-green); color: white; border: none; padding: 0.65rem 1.25rem; border-radius: 6px; font-weight: 700; font-size: 0.875rem; cursor: pointer;">Success / Approve</button>
+      <button style="background: #ef4444; color: white; border: none; padding: 0.65rem 1.25rem; border-radius: 6px; font-weight: 700; font-size: 0.875rem; cursor: pointer;">Danger / Reject</button>
+    </div>
+
+    <h3 class="sub-section">11.2 Status Badge System</h3>
+    <div style="display: flex; gap: 0.65rem; flex-wrap: wrap; padding: 1rem; background: var(--bg-light); border-radius: 6px; border: 1px solid var(--border); margin: 1rem 0; align-items: center;">
+      <span style="background: #dcfce7; color: #166534; font-size: 0.8rem; font-weight: 700; padding: 0.3rem 0.85rem; border-radius: 999px;">✅ Issued / Approved</span>
+      <span style="background: #dbeafe; color: #1e40af; font-size: 0.8rem; font-weight: 700; padding: 0.3rem 0.85rem; border-radius: 999px;">🔵 Under Verification</span>
+      <span style="background: #fef3c7; color: #92400e; font-size: 0.8rem; font-weight: 700; padding: 0.3rem 0.85rem; border-radius: 999px;">⏳ Submitted</span>
+      <span style="background: #fee2e2; color: #991b1b; font-size: 0.8rem; font-weight: 700; padding: 0.3rem 0.85rem; border-radius: 999px;">❌ Rejected</span>
+      <span style="background: #f1f5f9; color: #475569; font-size: 0.8rem; font-weight: 700; padding: 0.3rem 0.85rem; border-radius: 999px;">Revenue Dept</span>
+    </div>
+
+    <h3 class="sub-section">11.3 Toast Notification System</h3>
+    <div style="display: flex; flex-direction: column; gap: 0.5rem; margin: 1rem 0;">
+      <div style="background: #0c1c36; color: white; padding: 0.85rem 1.25rem; border-radius: 6px; display: flex; align-items: center; gap: 0.65rem; font-size: 0.875rem; border-left: 4px solid var(--gov-saffron); max-width: 400px;">
+        <span>ℹ️</span> Application saved to local registry.
+      </div>
+      <div style="background: #0c1c36; color: white; padding: 0.85rem 1.25rem; border-radius: 6px; display: flex; align-items: center; gap: 0.65rem; font-size: 0.875rem; border-left: 4px solid var(--gov-green); max-width: 400px;">
+        <span>✅</span> Application Submitted! ID: ESC-2026-8812
+      </div>
+      <div style="background: #0c1c36; color: white; padding: 0.85rem 1.25rem; border-radius: 6px; display: flex; align-items: center; gap: 0.65rem; font-size: 0.875rem; border-left: 4px solid #ef4444; max-width: 400px;">
+        <span>⚠️</span> Please enter a valid 12-digit Aadhaar number.
+      </div>
+    </div>
+    <div class="annotation-box">
+      <strong>📌 Toast Design Rationale:</strong> Bottom-right positioning avoids disrupting the main content focus area. Navy dark background with white text provides maximum contrast. The left accent border communicates status type (saffron = info, green = success, red = error) consistent with portal's semantic color system. Auto-dismiss after 4 seconds; screen-reader accessible via <code>aria-live="polite"</code> region.
+    </div>
+
+    <h3 class="sub-section">11.4 Form Elements</h3>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.25rem; background: var(--bg-light); border-radius: 6px; border: 1px solid var(--border); margin: 1rem 0;">
+      <div>
+        <label style="font-size: 0.8rem; font-weight: 700; color: var(--gov-navy); display: block; margin-bottom: 0.35rem;">Text Input (Default State)</label>
+        <input type="text" placeholder="Enter full name..." style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.875rem; font-family: inherit;">
+      </div>
+      <div>
+        <label style="font-size: 0.8rem; font-weight: 700; color: var(--gov-navy); display: block; margin-bottom: 0.35rem;">Text Input (Focus State)</label>
+        <input type="text" value="Ramesh Kumar Patil" style="width: 100%; padding: 0.65rem 0.85rem; border: 2px solid var(--gov-navy); border-radius: 6px; font-size: 0.875rem; font-family: inherit; box-shadow: 0 0 0 3px rgba(20,45,84,0.15);">
+      </div>
+      <div>
+        <label style="font-size: 0.8rem; font-weight: 700; color: #991b1b; display: block; margin-bottom: 0.35rem;">Text Input (Error State)</label>
+        <input type="text" value="98765" style="width: 100%; padding: 0.65rem 0.85rem; border: 2px solid #ef4444; border-radius: 6px; font-size: 0.875rem; font-family: inherit;">
+        <div style="color: #991b1b; font-size: 0.75rem; margin-top: 0.25rem;">⚠️ Please enter a valid 10-digit mobile number.</div>
+      </div>
+      <div>
+        <label style="font-size: 0.8rem; font-weight: 700; color: var(--gov-navy); display: block; margin-bottom: 0.35rem;">Select Dropdown</label>
+        <select style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.875rem; font-family: inherit; background: white;">
+          <option>-- Select District --</option>
+          <option selected>Pune</option>
+          <option>Mumbai Suburban</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       12. ACCESSIBILITY
+       ============================================================ -->
+  <div class="section-block">
+    <h2 class="section-title">♿ 12. Accessibility &amp; Inclusive Design Implementation</h2>
+
+    <h3 class="sub-section">12.1 WCAG 2.1 Level AA Compliance Checklist</h3>
+    <table>
+      <thead><tr><th>WCAG Criterion</th><th>Guideline</th><th>e-SevaConnect Implementation</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>1.4.3 — Contrast (Minimum)</td><td>4.5:1 for text, 3:1 for large text</td><td>Navy on White = 12.4:1 ✅; Saffron CTA = 3.2:1 ✅ (large bold)</td><td>✅ Pass</td></tr>
+        <tr><td>1.4.11 — Non-Text Contrast</td><td>3:1 for UI components</td><td>All form borders, button outlines, and icon backgrounds exceed 3:1</td><td>✅ Pass</td></tr>
+        <tr><td>2.1.1 — Keyboard</td><td>All functionality via keyboard</td><td>Tab order follows visual reading sequence; nav links, form fields, buttons, and modals keyboard-navigable</td><td>✅ Pass</td></tr>
+        <tr><td>2.4.3 — Focus Order</td><td>Focus traversal is logical</td><td>Skip-to-content link at top; focus managed to modal/dialog on open</td><td>✅ Pass</td></tr>
+        <tr><td>2.4.7 — Focus Visible</td><td>Keyboard focus indicator visible</td><td>3px saffron outline + 2px offset on all interactive elements</td><td>✅ Pass</td></tr>
+        <tr><td>4.1.2 — Name, Role, Value</td><td>UI components have accessible names</td><td>All inputs: <code>id</code> + <code>label for</code>; buttons: <code>aria-label</code>; nav: <code>role="navigation"</code></td><td>✅ Pass</td></tr>
+        <tr><td>1.3.1 — Info and Relationships</td><td>Structure conveys semantically</td><td>Semantic HTML: <code>&lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;, &lt;footer&gt;</code></td><td>✅ Pass</td></tr>
+        <tr><td>2.5.5 — Target Size</td><td>Min 44×44 CSS pixels</td><td>All navigation items, form fields, and CTA buttons exceed 44px height</td><td>✅ Pass</td></tr>
+      </tbody>
+    </table>
+
+    <div class="success-box">
+      <strong>✅ Accessibility Design Achievement:</strong> All 7 wireframed pages satisfy WCAG 2.1 Level AA criteria. The High-Contrast mode additionally satisfies several WCAG 2.1 Level AAA requirements (7:1+ contrast ratios), making the portal usable by citizens with severe visual impairments.
+    </div>
+  </div>
+
+  <!-- ============================================================
+       13. DESIGN PROCESS & CHALLENGES
+       ============================================================ -->
+  <div class="section-block">
+    <h2 class="section-title">⚙️ 13. Design Process, Challenges &amp; Rationale</h2>
+
+    <h3 class="sub-section">13.1 Design Process Followed</h3>
+    <ol>
+      <li style="margin-bottom: 0.5rem;"><strong>Empathy Research (4 hrs):</strong> Studied UMANG, MahaOnline, ServicePlus for UX gaps. Reviewed GIGW 3.0, NIC UI guidelines, and W3C WCAG checklists.</li>
+      <li style="margin-bottom: 0.5rem;"><strong>Information Architecture (3 hrs):</strong> Mapped all user flows, defined 3-level site hierarchy, identified crosslinks and cross-page state dependencies.</li>
+      <li style="margin-bottom: 0.5rem;"><strong>Design System Definition (5 hrs):</strong> Established color tokens, typography scale, spacing units, border radius, elevation system, and component anatomy for consistency.</li>
+      <li style="margin-bottom: 0.5rem;"><strong>Low-Fidelity Sketching (4 hrs):</strong> Rough hand-sketched layouts for all 7 pages exploring grid variations, hero patterns, and navigation placement alternatives.</li>
+      <li style="margin-bottom: 0.5rem;"><strong>High-Fidelity HTML/CSS Wireframing (15 hrs):</strong> Precise pixel-accurate wireframes embedded in this document using pure HTML/CSS. Every component rendered at accurate proportions matching the live portal implementation.</li>
+      <li style="margin-bottom: 0.5rem;"><strong>Annotations &amp; Documentation (4 hrs):</strong> Writing detailed design rationale for each wireframe, component, and decision point.</li>
+      <li style="margin-bottom: 0.5rem;"><strong>Accessibility Audit (3 hrs):</strong> Running WCAG 2.1 AA contrast checks, keyboard navigation testing, and screen-reader structure validation.</li>
+    </ol>
+
+    <h3 class="sub-section">13.2 Key Design Challenges &amp; Solutions</h3>
+    <table>
+      <thead><tr><th>Challenge</th><th>Problem Description</th><th>Design Solution Applied</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Multi-Persona Accessibility</strong></td>
+          <td>Designing for concurrent needs of tech-savvy urban professionals AND elderly low-vision rural citizens within the same interface.</td>
+          <td>Layered accessibility: default clean design for all users + opt-in High-Contrast toggle + opt-in font resizer. Progressive enhancement approach ensures baseline usability without requiring extra steps.</td>
+        </tr>
+        <tr>
+          <td><strong>Government Visual Trust</strong></td>
+          <td>Citizens mistrust unofficial-looking portals; need institutional visual authority without being intimidating or cold.</td>
+          <td>National color palette + official emblem + tricolor accent strip + formal footer links establish authority. Warm saffron CTAs and friendly microcopy ("Start Your Application") balance approachability.</td>
+        </tr>
+        <tr>
+          <td><strong>Form Abandonment Risk</strong></td>
+          <td>Traditional government applications are abandoned mid-way due to unexpected document requirements or long form lengths.</td>
+          <td>Document checklists visible before applying (service catalog cards). 4-step wizard with clear step indicator. LocalStorage draft saving prevents data loss on navigation.</td>
+        </tr>
+        <tr>
+          <td><strong>Certificate Authenticity Display</strong></td>
+          <td>Digital certificates must feel legally authentic while being viewable on a web browser.</td>
+          <td>Double-border frame design, official emblem header, officer digital signature block, QR verification code, and IT Act 2000 legal disclaimer text collectively simulate physical certificate authority in digital form.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============================================================
+       14. DESIGN-TO-DEVELOPMENT HANDOFF
+       ============================================================ -->
+  <div class="section-block">
+    <h2 class="section-title">🔧 14. Design-to-Development Handoff Notes</h2>
+
+    <div class="note-box">
+      <strong>📋 Handoff Summary:</strong> All wireframes in this document directly correspond to the implemented HTML/CSS/JS files in the e-SevaConnect project folder. The design system (CSS custom properties, component classes) is fully implemented in <code>css/style.css</code>.
+    </div>
+
+    <table>
+      <thead><tr><th>Wireframe</th><th>Implemented File</th><th>Key CSS Classes / JS Functions</th></tr></thead>
+      <tbody>
+        <tr><td>Wireframe 1: Homepage</td><td><code>index.html</code></td><td><code>.hero-section</code>, <code>.stats-ribbon</code>, <code>.service-card</code>, <code>initHeroTracker()</code></td></tr>
+        <tr><td>Wireframe 2: Services Catalog</td><td><code>services.html</code></td><td><code>.catalog-card</code>, <code>#catalog-search-input</code>, <code>initServiceCatalog()</code></td></tr>
+        <tr><td>Wireframe 3: Application Wizard</td><td><code>apply.html</code></td><td><code>.wizard-card</code>, <code>.wizard-step-tab</code>, <code>initApplicationWizard()</code></td></tr>
+        <tr><td>Wireframe 4: Tracking Engine</td><td><code>track.html</code></td><td><code>.timeline-tracker</code>, <code>.timeline-node</code>, <code>initTrackingEngine()</code></td></tr>
+        <tr><td>Wireframe 5: Dashboard</td><td><code>dashboard.html</code></td><td><code>.dash-table</code>, <code>.status-pill</code>, <code>initDashboard()</code></td></tr>
+        <tr><td>Wireframe 6: Grievance Portal</td><td><code>grievance.html</code></td><td><code>#grievance-form</code>, <code>#grv-success-modal</code>, <code>initGrievanceEngine()</code></td></tr>
+        <tr><td>Wireframe 7: E-Certificate</td><td><code>certificate-view.html</code></td><td><code>.certificate-frame</code>, <code>.cert-footer-row</code>, <code>initCertificateView()</code></td></tr>
+      </tbody>
+    </table>
+
+    <!-- Sign-off -->
+    <div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 2px solid var(--border); display: flex; justify-content: space-between; font-size: 0.875rem;">
+      <div>
+        <strong>Prepared By:</strong><br>
+        Junior Web Developer Intern<br>
+        E-Governance &amp; Digital Services Track
+      </div>
+      <div style="text-align: right;">
+        <strong>Submission Stage:</strong> Week 2 of 4<br>
+        Estimated Effort: 30–35 Hours<br>
+        Status: Final Assessment Draft — October 2026
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+</body>
+</html>

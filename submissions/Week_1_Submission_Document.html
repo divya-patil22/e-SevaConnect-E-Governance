@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 1 Task Submission - Strategic Planning & Requirements Definition</title>
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      body { font-size: 11pt; line-height: 1.5; color: #000; background: #fff; }
+      .page-break { page-break-before: always; }
+      .container { max-width: 100% !important; padding: 0 !important; }
+    }
+    body {
+      font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+      background-color: #f8fafc;
+      margin: 0;
+      padding: 0;
+    }
+    .no-print {
+      background-color: #142d54;
+      color: #fff;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .btn-action {
+      background: #f57c00;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      padding: 0.6rem 1.25rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      text-decoration: none;
+    }
+    .btn-action:hover { background: #b25000; color: #fff; }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #ffffff;
+      padding: 3.5rem 4rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      border-radius: 4px;
+    }
+    .cover-box {
+      border: 3px double #142d54;
+      padding: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      background: #fafcff;
+    }
+    .cover-box h1 {
+      color: #142d54;
+      font-size: 2.1rem;
+      margin: 0.5rem 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .cover-box h2 {
+      color: #f57c00;
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      text-align: left;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+    h2.sec-title {
+      color: #142d54;
+      border-bottom: 2px solid #142d54;
+      padding-bottom: 0.4rem;
+      margin-top: 2.5rem;
+      font-size: 1.45rem;
+    }
+    h3.sub-title {
+      color: #0c1c36;
+      margin-top: 1.5rem;
+      font-size: 1.15rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.925rem;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 0.65rem 0.85rem;
+      text-align: left;
+    }
+    th {
+      background-color: #f1f5f9;
+      color: #142d54;
+      font-weight: 700;
+    }
+    tr:nth-child(even) { background-color: #f8fafc; }
+    .persona-card {
+      background: #f8fafc;
+      border-left: 4px solid #142d54;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+      border-radius: 0 4px 4px 0;
+    }
+    .code-diagram {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 1.25rem;
+      border-radius: 6px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.825rem;
+      overflow-x: auto;
+      white-space: pre;
+      line-height: 1.4;
+      margin: 1.25rem 0;
+    }
+    .alert-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      padding: 1rem;
+      border-radius: 4px;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Action Bar (Hidden in Print) -->
+  <div class="no-print">
+    <div>
+      <strong>e-SevaConnect &bull; Week 1 Submission Document</strong>
+      <span style="opacity: 0.8; font-size: 0.85rem; margin-left: 1rem;">Ready for DOC / PDF Export</span>
+    </div>
+    <div style="display: flex; gap: 0.75rem;">
+      <button class="btn-action" onclick="window.print()">🖨️ Print / Save as PDF</button>
+      <button class="btn-action" style="background: #2e7d32; color: #fff;" onclick="selectAndCopy()">📋 Copy All Text for Word</button>
+    </div>
+  </div>
+
+  <div class="container" id="printable-doc">
+    <!-- Cover Page -->
+    <div class="cover-box">
+      <div style="font-size: 2.2rem; margin-bottom: 0.25rem;">🏛️</div>
+      <div style="font-size: 0.85rem; font-weight: 700; color: #64748b; letter-spacing: 2px;">INTERNSHIP CERTIFICATION PROJECT SUBMISSION</div>
+      <h1>e-SevaConnect E-Governance Portal</h1>
+      <h2>Week 1 Task: Strategic Planning &amp; Requirements Definition</h2>
+      <p style="font-size: 0.95rem; color: #475569; max-width: 600px; margin: 0 auto;">
+        A comprehensive requirements specification, system architecture blueprint, and citizen-centric strategic roadmap for public digital service delivery.
+      </p>
+
+      <div class="meta-grid">
+        <div><strong>Internship Role:</strong> Junior Web Developer - E-Governance &amp; Digital Services</div>
+        <div><strong>Submission Stage:</strong> Week 1 (Planning &amp; Requirements)</div>
+        <div><strong>Estimated Effort:</strong> 30 - 35 Hours</div>
+        <div><strong>Compliance:</strong> GIGW 3.0 &bull; WCAG 2.1 AA &bull; DPDP Act 2023</div>
+      </div>
+    </div>
+
+    <!-- 1. Executive Summary -->
+    <h2 class="sec-title">1. Executive Summary</h2>
+    <p>
+      The modernization of public administration through digital governance is pivotal in ensuring transparent, equitable, and accountable service delivery to all citizen cohorts. <strong>e-SevaConnect</strong> is conceived as a unified, accessible, and resilient e-governance web platform engineered to eliminate bureaucratic inefficiencies, physical queues at administrative offices, and information asymmetry.
+    </p>
+    <p>
+      This strategic planning document defines the functional vision, architectural blueprint, user personas, and requirements specification for e-SevaConnect. By combining modern web standards (semantic HTML5, accessible CSS3 design systems, modular JavaScript, and client-side persistence), this system establishes a baseline for frictionless citizen onboarding, real-time status tracking, verifiable credential issuance, and closed-loop public grievance redressal.
+    </p>
+
+    <!-- 2. Research & Industry Analysis -->
+    <h2 class="sec-title">2. Research &amp; Industry Analysis</h2>
+    <h3 class="sub-title">2.1 Global and National Trends in E-Governance</h3>
+    <p>
+      According to the United Nations E-Government Survey and the Government of India’s National e-Governance Division (NeGD) guidelines, digital public infrastructure has shifted from static departmental websites to transactional, citizen-centric ecosystems characterized by:
+    </p>
+    <ul>
+      <li><strong>Universal Accessibility:</strong> Mandatory conformance with WCAG 2.1 AA to serve differently-abled citizens and users in low-bandwidth rural connectivity environments.</li>
+      <li><strong>Workflow Transparency:</strong> Eliminating the "status black hole" where citizens submit paper applications without ongoing visibility into officer review.</li>
+      <li><strong>Citizen Charters &amp; SLAs:</strong> Enforcing statutory turnaround times backed by automatic escalation matrices.</li>
+    </ul>
+
+    <h3 class="sub-title">2.2 Comparative Benchmark Analysis</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Platform</th>
+          <th>Key Strength</th>
+          <th>Observed Friction / Gap</th>
+          <th>e-SevaConnect Innovation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>DigiLocker</strong></td>
+          <td>Tamper-proof digital credential storage.</td>
+          <td>Requires pre-existing document identifiers; unintuitive for first-time applicants.</td>
+          <td>Direct application linking with pre-filled forms and instant QR-verified certificate synthesis.</td>
+        </tr>
+        <tr>
+          <td><strong>UMANG</strong></td>
+          <td>Aggregation of hundreds of state services.</td>
+          <td>High cognitive load and cluttered interface on mobile viewports.</td>
+          <td>Simplified 4-step wizard, prominent accessibility controls, and categorized catalog search.</td>
+        </tr>
+        <tr>
+          <td><strong>ServicePlus</strong></td>
+          <td>Robust departmental back-office routing.</td>
+          <td>Outdated UI with poor real-time status tracking.</td>
+          <td>Interactive visual milestone timeline with live officer scrutiny remarks.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 3. Project Scope & Objectives -->
+    <h2 class="sec-title">3. Project Scope &amp; Core Objectives</h2>
+    <p>
+      <strong>Problem Statement:</strong> Traditional public administrative processes impose significant friction on citizens through physical transit burdens, redundant document submissions, lack of real-time application visibility, and inaccessible digital web interfaces, disproportionately impacting vulnerable, elderly, and rural demographics.
+    </p>
+    <div class="alert-box">
+      <strong>Core Project Objectives:</strong>
+      <ol>
+        <li>Deliver a streamlined, 4-step online application wizard with client-side form validation.</li>
+        <li>Implement a real-time status tracker driven by deterministic Tracking Reference Numbers (e.g. <code>ESC-2026-XXXX</code>).</li>
+        <li>Ensure universal accessibility with high-contrast color toggles and responsive typography.</li>
+        <li>Provide an integrated public grievance redressal portal aligned with CPGRAMS standards.</li>
+      </ol>
+    </div>
+
+    <!-- 4. Target Audience & User Personas -->
+    <h2 class="sec-title">4. Target Audience &amp; Detailed User Personas</h2>
+
+    <div class="persona-card">
+      <h4 style="margin: 0 0 0.5rem; color: #142d54;">Persona 1: Ramesh K. Patil (Rural Agriculturalist)</h4>
+      <p style="margin: 0 0 0.5rem; font-size: 0.9rem;"><strong>Demographics:</strong> Age 46 &bull; Tier-3 Rural Taluka &bull; Basic Digital Literacy &bull; Mobile-First (4G)</p>
+      <p style="margin: 0 0 0.5rem;"><strong>Goals:</strong> Apply for an official Agricultural Income Certificate without traveling 35 km to the Sub-Divisional Office; receive an instant proof of submission.</p>
+      <p style="margin: 0;"><strong>Accommodations:</strong> Intuitive category icons, local draft auto-saving, and printable receipt containing a distinct Application Reference Number.</p>
+    </div>
+
+    <div class="persona-card">
+      <h4 style="margin: 0 0 0.5rem; color: #142d54;">Persona 2: Ananya Sen (Urban Student / Professional)</h4>
+      <p style="margin: 0 0 0.5rem; font-size: 0.9rem;"><strong>Demographics:</strong> Age 22 &bull; Metro City &bull; High Digital Literacy &bull; Laptop &amp; 5G Smartphone</p>
+      <p style="margin: 0 0 0.5rem;"><strong>Goals:</strong> Obtain Domicile &amp; Caste Validity Certificates for college admissions; track approval milestones in real-time; download verifiable e-certificates.</p>
+      <p style="margin: 0;"><strong>Accommodations:</strong> Fast debounced search in catalog, live timeline tracker showing assigned officer, and QR-verifiable certificate download.</p>
+    </div>
+
+    <div class="persona-card">
+      <h4 style="margin: 0 0 0.5rem; color: #142d54;">Persona 3: Prabhakar Rao (Senior Citizen Beneficiary)</h4>
+      <p style="margin: 0 0 0.5rem; font-size: 0.9rem;"><strong>Demographics:</strong> Age 71 &bull; Suburban Town &bull; Low-to-Moderate Literacy &bull; Tablet / Desktop</p>
+      <p style="margin: 0 0 0.5rem;"><strong>Goals:</strong> Enroll in Senior Citizen Pension Scheme; lodge a grievance regarding delayed quarterly allowance.</p>
+      <p style="margin: 0;"><strong>Accommodations:</strong> Top-bar Accessibility Resizer (A/A+/A++), High-Contrast Mode toggle, large touch targets, and straightforward grievance submission.</p>
+    </div>
+
+    <!-- 5. Software Requirements Specification -->
+    <h2 class="sec-title">5. Software Requirements Specification (SRS)</h2>
+    <h3 class="sub-title">5.1 Functional Requirements (FR)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Req ID</th>
+          <th>Requirement Title</th>
+          <th>Detailed Functional Specification</th>
+          <th>Priority</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>FR-01</strong></td>
+          <td>Service Catalog &amp; Filter</td>
+          <td>Searchable directory of public services categorized by department with debounced keyword search.</td>
+          <td>High (P1)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-02</strong></td>
+          <td>Multi-Step Application Wizard</td>
+          <td>4-step wizard: (1) Demographics, (2) Service Details, (3) Document Uploads, (4) Statutory Review.</td>
+          <td>High (P1)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-03</strong></td>
+          <td>Input Validation Engine</td>
+          <td>Client-side regex verification for 12-digit Aadhaar, 10-digit mobile, PIN code, and mandatory fields.</td>
+          <td>High (P1)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-04</strong></td>
+          <td>Deterministic Tracking ID</td>
+          <td>Generates immutable Reference Number (<code>ESC-YYYY-XXXX</code>) upon successful submission.</td>
+          <td>High (P1)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-05</strong></td>
+          <td>Real-Time Status Engine</td>
+          <td>Lookup engine displaying live milestone progress bar, assigned officer, and remarks.</td>
+          <td>High (P1)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-06</strong></td>
+          <td>State Persistence</td>
+          <td>Stores applications and grievances in browser <code>localStorage</code> simulating enterprise database.</td>
+          <td>High (P1)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-07</strong></td>
+          <td>Citizen Grievance Redressal</td>
+          <td>Filing portal with auto-generated Ticket ID (<code>GRV-YYYY-XXXX</code>) and 7-day SLA tracker.</td>
+          <td>Medium (P2)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-08</strong></td>
+          <td>Digital E-Certificate Synthesis</td>
+          <td>Generates printable, digitally signed certificates featuring official seals and scannable QR badge.</td>
+          <td>Medium (P2)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-09</strong></td>
+          <td>Citizen Dashboard</td>
+          <td>Centralized view displaying application records, status badges, and download actions.</td>
+          <td>Medium (P2)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-10</strong></td>
+          <td>Accessibility Controls</td>
+          <td>Instant High-Contrast theme toggle and dynamic 3-level font resizer.</td>
+          <td>High (P1)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 6. System Architecture & Workflows -->
+    <h2 class="sec-title">6. System Architecture &amp; Service Workflows</h2>
+    <h3 class="sub-title">6.1 Multi-Tier Architectural Topology</h3>
+    <p>
+      The architecture enforces a strict separation of concerns across four logical tiers:
+    </p>
+    <div class="code-diagram">
++-----------------------------------------------------------------------------------+
+|                        TIER 1: PRESENTATION & CLIENT TIER                         |
+|   index.html | services.html | apply.html | track.html | grievance.html | dash    |
+|   - Responsive CSS3 Grid/Flexbox Layouts | WCAG 2.1 AA High-Contrast Mode         |
++-----------------------------------------------------------------------------------+
+                                          |
+                                          v
++-----------------------------------------------------------------------------------+
+|                     TIER 2: CLIENT CONTROLLER & LOGIC ENGINE                      |
+|   js/app.js (Event Dispatcher, Wizard Controller, Validation, QR Simulator)       |
++-----------------------------------------------------------------------------------+
+                                          |
+                                          v
++-----------------------------------------------------------------------------------+
+|                      TIER 3: DATA & STATE PERSISTENCE LAYER                       |
+|   localStorage: esc_applications_v1 | esc_grievances_v1 | esc_settings_v1        |
++-----------------------------------------------------------------------------------+
+                                          |
+                                          v (Future Enterprise Gateways)
++-----------------------------------------------------------------------------------+
+|                    TIER 4: NATIONAL DIGITAL PUBLIC INFRASTRUCTURE                 |
+|   UIDAI Aadhaar e-KYC | DigiLocker Repository | CDAC SMS Gateway | Bharat BillPay |
++-----------------------------------------------------------------------------------+
+    </div>
+
+    <!-- 7. Security & Risk Assessment -->
+    <h2 class="sec-title">7. Security Architecture, Risk Assessment &amp; Compliance</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Risk Identified</th>
+          <th>Impact</th>
+          <th>Mitigation Strategy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cross-Site Scripting (XSS)</td>
+          <td>Critical</td>
+          <td>Strict DOM escaping using <code>textContent</code>; input validation regex guards.</td>
+        </tr>
+        <tr>
+          <td>Data Privacy &amp; PII Exposure</td>
+          <td>High</td>
+          <td>Aadhaar numbers masked (<code>XXXX-XXXX-1234</code>); adherence to DPDP Act 2023.</td>
+        </tr>
+        <tr>
+          <td>Form Abandonment / Data Loss</td>
+          <td>High</td>
+          <td>Multi-step chunking with persistent client drafts and summary review checks.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 8. Implementation Roadmap -->
+    <h2 class="sec-title">8. Project Implementation Roadmap &amp; WBS</h2>
+    <p>
+      The 4-week development plan allocates effort systematically across the internship lifecycle:
+    </p>
+    <ul>
+      <li><strong>Week 1: Strategic Planning &amp; Requirements Definition</strong> (32 Hours) &bull; <em>Completed</em></li>
+      <li><strong>Week 2: UI/UX Design, Wireframing &amp; Front-End Strategy</strong> (30 Hours) &bull; <em>Next Milestone</em></li>
+      <li><strong>Week 3: Front-End Implementation &amp; Interactive Features</strong> (35 Hours) &bull; <em>Development</em></li>
+      <li><strong>Week 4: Comprehensive Evaluation, Optimization &amp; Security Audit</strong> (30 Hours) &bull; <em>Finalization</em></li>
+    </ul>
+
+    <!-- Sign-off -->
+    <div style="margin-top: 3.5rem; padding-top: 1.5rem; border-top: 2px solid #cbd5e1; display: flex; justify-content: space-between;">
+      <div>
+        <strong>Prepared By:</strong><br>
+        Junior Web Developer Intern<br>
+        E-Governance &amp; Digital Services Track
+      </div>
+      <div style="text-align: right;">
+        <strong>Verified &amp; Submitted:</strong><br>
+        October 2026<br>
+        Status: Final Assessment Draft
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function selectAndCopy() {
+      const doc = document.getElementById('printable-doc');
+      const range = document.createRange();
+      range.selectNode(doc);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      try {
+        document.execCommand('copy');
+        alert('All document text and tables copied to clipboard! You can now paste directly into Microsoft Word (DOC/DOCX).');
+      } catch (err) {
+        alert('Please press Ctrl+C to copy the selected text.');
+      }
+    }
+  </script>
+</body>
+</html>

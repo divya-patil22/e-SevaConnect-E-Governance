@@ -1,0 +1,282 @@
+/* ==========================================================================
+   e-SevaConnect - Design System v2.0 (Week 2 Enhancement)
+   Additions: Toast notifications, improved form states, card hover animations,
+   badge system, service tags, upload dropzone improvements, timeline enhancements
+   ========================================================================== */
+
+/* Extended Status Badge / Pill System */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.badge-success { background: #dcfce7; color: #166534; }
+.badge-progress { background: #dbeafe; color: #1e40af; }
+.badge-pending { background: #fef3c7; color: #92400e; }
+.badge-danger  { background: #fee2e2; color: #991b1b; }
+.badge-neutral { background: #f1f5f9; color: #475569; }
+
+/* Announcement / Notice Date Badges */
+.notice-date-badge {
+  background-color: rgba(20, 45, 84, 0.08);
+  color: var(--gov-primary);
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: center;
+  min-width: 70px;
+  line-height: 1.25;
+}
+
+/* Section Tag / Eyebrow Labels */
+.section-tag {
+  display: inline-block;
+  background-color: rgba(245, 124, 0, 0.12);
+  color: var(--gov-saffron-dark);
+  font-weight: 700;
+  font-size: 0.775rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  margin-bottom: 0.5rem;
+}
+
+/* Small Action Buttons (for tables) */
+.btn-sm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.775rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+
+a.btn-sm.btn-primary {
+  background: var(--gov-primary);
+  color: #ffffff;
+  border-color: var(--gov-primary);
+}
+
+a.btn-sm.btn-primary:hover {
+  background: var(--gov-primary-light);
+  color: #ffffff;
+}
+
+a.btn-sm.btn-outline {
+  background: transparent;
+  color: var(--gov-primary);
+  border-color: var(--gov-primary);
+}
+
+a.btn-sm.btn-outline:hover {
+  background: var(--gov-primary);
+  color: #ffffff;
+}
+
+/* Improved Form Input States */
+.form-input:invalid:not(:placeholder-shown),
+.form-input.input-error {
+  border-color: var(--status-danger);
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15);
+}
+
+.form-input:valid:not(:placeholder-shown) {
+  border-color: var(--status-success);
+}
+
+.field-error-msg {
+  color: var(--status-danger);
+  font-size: 0.775rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Color Utility */
+.color-navy { color: var(--gov-primary); }
+.color-saffron { color: var(--gov-saffron); }
+.color-green { color: var(--gov-green); }
+.color-muted { color: var(--text-muted); }
+
+/* Card hover improvements */
+.service-card:hover::before { background: var(--gov-saffron); }
+.pillar-card:hover { border-color: var(--gov-primary-light); }
+
+/* Catalog card enhancements (services.html) */
+.catalog-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition);
+}
+
+.catalog-card:hover {
+  border-color: var(--gov-primary-light);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Upload dropzone improvements */
+.upload-dropzone label {
+  cursor: pointer;
+  display: block;
+}
+
+.upload-dropzone input[type="file"] {
+  display: block;
+  margin: 0 auto;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* Timeline date labels */
+.node-date {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+  line-height: 1.2;
+}
+
+.timeline-node.done .node-date { color: var(--gov-green); font-weight: 600; }
+.timeline-node.current .node-date { color: var(--gov-saffron-dark); font-weight: 600; }
+
+/* Metric Summary Card for Dashboard */
+.metric-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  transition: var(--transition);
+}
+
+.metric-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Notices Panel */
+.notices-panel {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.notice-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.notice-item:last-child { border-bottom: none; }
+
+.notice-text h4 {
+  font-size: 0.925rem;
+  margin-bottom: 0.2rem;
+  color: var(--text-main);
+}
+
+.notice-text p {
+  font-size: 0.825rem;
+  color: var(--text-muted);
+}
+
+/* Wizard declaration / legal notice box */
+.legal-notice-box {
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  padding: 1.15rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.5rem;
+}
+
+.legal-notice-box label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  color: #92400e;
+  cursor: pointer;
+}
+
+/* Review Summary table in wizard Step 4 */
+.review-summary-card {
+  background-color: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.review-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--border-color);
+  font-size: 0.925rem;
+}
+
+.review-item:last-child { border-bottom: none; }
+.review-label { color: var(--text-muted); font-weight: 500; }
+.review-value { font-weight: 700; color: var(--text-main); text-align: right; }
+
+/* Certificate page improvements */
+.cert-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-size: 5rem;
+  color: rgba(20, 45, 84, 0.04);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Grievance success modal enhancements */
+.grv-modal-inner {
+  background: var(--bg-surface);
+  max-width: 500px;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  border-top: 6px solid var(--gov-saffron);
+}
+
+/* Focus trap helpers for modals */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.modal-backdrop.show { display: flex; }

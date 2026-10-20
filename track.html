@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Application Status | e-SevaConnect E-Governance Portal</title>
+  <meta name="description" content="Check real-time application processing milestones, officer remarks, and download digital certificates.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/design-system-v2.css">
+</head>
+<body>
+
+  <!-- Top Accessibility Bar -->
+  <header class="top-util-bar" role="region" aria-label="Accessibility & Preferences">
+    <div class="container top-util-inner">
+      <div class="util-flag-badge">
+        <span class="util-tricolor-strip" aria-hidden="true">
+          <span class="tricolor-1"></span>
+          <span class="tricolor-2"></span>
+          <span class="tricolor-3"></span>
+        </span>
+        <span>GOVERNMENT OF INDIA &bull; APPLICATION TRACKING ENGINE</span>
+      </div>
+      <div class="util-controls">
+        <button id="btn-toggle-contrast" class="util-btn" title="Toggle High Contrast Display">
+          <span>◐</span> High Contrast
+        </button>
+        <div class="font-resizers">
+          <button id="btn-font-normal" class="util-btn">A</button>
+          <button id="btn-font-large" class="util-btn">A+</button>
+          <button id="btn-font-xlarge" class="util-btn">A++</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Branding -->
+  <div class="site-header">
+    <div class="container header-brand-row">
+      <div class="brand-wrapper">
+        <div class="national-emblem" aria-hidden="true">🏛️</div>
+        <div class="brand-titles">
+          <h1>e-SevaConnect</h1>
+          <p class="tagline">Real-Time Application Status &amp; Verification Tracker</p>
+        </div>
+      </div>
+      <div class="brand-actions">
+        <div class="btn-emergency">
+          <span>📞</span> Toll-Free: <strong>1800-111-2026</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="main-nav-bar" role="navigation" aria-label="Primary Navigation">
+    <div class="container nav-container">
+      <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+      <ul id="nav-links" class="nav-links">
+        <li class="nav-item"><a href="index.html">Home</a></li>
+        <li class="nav-item"><a href="services.html">Services Catalog</a></li>
+        <li class="nav-item"><a href="apply.html">Apply Online</a></li>
+        <li class="nav-item"><a href="track.html" class="active">Track Application</a></li>
+        <li class="nav-item"><a href="grievance.html">Grievance Redressal</a></li>
+        <li class="nav-item"><a href="dashboard.html">Citizen Dashboard</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div style="background-color: var(--gov-primary); color: #fff; padding: 2.25rem 0 1.75rem; border-bottom: 4px solid var(--gov-saffron);">
+    <div class="container">
+      <h2 style="font-size: 1.85rem; margin-bottom: 0.35rem;">Application Progress &amp; Status Tracker</h2>
+      <p style="color: #cbd5e1; font-size: 0.95rem;">
+        Transparent, immutable tracking across verification, field enquiry, and final digital approval milestones.
+      </p>
+    </div>
+  </div>
+
+  <main class="section-py" id="main-content">
+    <div class="container" style="max-width: 960px;">
+
+      <!-- Lookup Form Card -->
+      <div style="background: var(--bg-surface); padding: 1.75rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+        <form id="lookup-track-form" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 260px;">
+            <label for="track-input-id" class="form-label">Enter Application Reference ID <span class="required">*</span></label>
+            <input type="text" id="track-input-id" class="form-input" placeholder="e.g. ESC-2026-8812" required>
+          </div>
+          <div style="display: flex; align-items: flex-end;">
+            <button type="submit" class="btn-primary" style="height: 44px; padding: 0 1.75rem;">
+              Track Status 🔍
+            </button>
+          </div>
+        </form>
+
+        <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px dashed var(--border-color); font-size: 0.85rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+          <span>Quick Test Records:</span>
+          <button type="button" class="util-btn" style="color: var(--gov-primary); border-color: var(--border-color);" onclick="document.getElementById('track-input-id').value='ESC-2026-8812'; document.getElementById('lookup-track-form').dispatchEvent(new Event('submit'));">
+            ESC-2026-8812 (Issued / Approved)
+          </button>
+          <button type="button" class="util-btn" style="color: var(--gov-primary); border-color: var(--border-color);" onclick="document.getElementById('track-input-id').value='ESC-2026-3401'; document.getElementById('lookup-track-form').dispatchEvent(new Event('submit'));">
+            ESC-2026-3401 (Under Verification)
+          </button>
+          <button type="button" class="util-btn" style="color: var(--gov-primary); border-color: var(--border-color);" onclick="document.getElementById('track-input-id').value='ESC-2026-5190'; document.getElementById('lookup-track-form').dispatchEvent(new Event('submit'));">
+            ESC-2026-5190 (Submitted)
+          </button>
+        </div>
+      </div>
+
+      <!-- Result Not Found Box -->
+      <div id="track-notfound-container" style="display: none; background: #fef2f2; border: 1px solid #fecaca; border-radius: var(--radius-lg); padding: 2.5rem; text-align: center; color: #991b1b; margin-bottom: 2rem;">
+        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔍⚠️</div>
+        <h3 style="font-size: 1.35rem; margin-bottom: 0.5rem;">No Application Record Found</h3>
+        <p style="font-size: 0.95rem; max-width: 500px; margin: 0 auto 1.25rem;">
+          We could not find an application matching this Reference ID. Please ensure the format matches <strong>ESC-2026-XXXX</strong> or apply for a service online.
+        </p>
+        <a href="apply.html" class="btn-primary">Apply Online Now</a>
+      </div>
+
+      <!-- Live Tracking Result Container -->
+      <div id="track-result-container" style="display: none;">
+        <div class="timeline-card">
+          <!-- Card Header & Metadata -->
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color);">
+            <div>
+              <span class="service-dept-badge" id="res-dept" style="margin-bottom: 0.35rem; display: inline-block;">Revenue Department</span>
+              <h3 style="font-size: 1.5rem; color: var(--gov-primary);" id="res-service-name">Income Certificate</h3>
+              <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">
+                Application ID: <strong id="res-app-id" style="color: var(--gov-primary); font-size: 1rem;">ESC-2026-XXXX</strong> |
+                Applicant: <strong id="res-applicant">Ramesh K. Patil</strong>
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.775rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Current Processing State</div>
+              <span id="res-status-badge" style="display: inline-block; padding: 0.4rem 1rem; border-radius: 999px; background: #dcfce7; color: #166534; font-weight: 700; font-size: 0.95rem; margin-top: 0.25rem;">
+                Issued
+              </span>
+            </div>
+          </div>
+
+          <!-- Step-by-Step Milestone Timeline -->
+          <div class="timeline-tracker" role="progressbar" aria-label="Application Lifecycle Stages">
+            <div class="timeline-progress-fill" id="timeline-progress-fill" style="width: 100%;"></div>
+
+            <!-- Stage 1 -->
+            <div class="timeline-node done" id="node-1">
+              <div class="node-circle">1</div>
+              <div class="node-title">Application Submitted</div>
+              <div class="node-date">Recorded</div>
+            </div>
+
+            <!-- Stage 2 -->
+            <div class="timeline-node done" id="node-2">
+              <div class="node-circle">2</div>
+              <div class="node-title">Desk Scrutiny</div>
+              <div class="node-date">Documents OK</div>
+            </div>
+
+            <!-- Stage 3 -->
+            <div class="timeline-node done" id="node-3">
+              <div class="node-circle">3</div>
+              <div class="node-title">Field Enquiry</div>
+              <div class="node-date">Verified</div>
+            </div>
+
+            <!-- Stage 4 -->
+            <div class="timeline-node done" id="node-4">
+              <div class="node-circle">4</div>
+              <div class="node-title">Tehsildar Approval</div>
+              <div class="node-date">Digitally Signed</div>
+            </div>
+
+            <!-- Stage 5 -->
+            <div class="timeline-node done" id="node-5">
+              <div class="node-circle">5</div>
+              <div class="node-title">Certificate Issued</div>
+              <div class="node-date">Ready</div>
+            </div>
+          </div>
+
+          <!-- Processing Officer Remarks & Actions -->
+          <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1.5rem;">
+            <div class="form-grid-2">
+              <div>
+                <div style="font-size: 0.775rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Assigned Processing Officer</div>
+                <div style="font-weight: 700; color: var(--text-main); margin-top: 0.2rem;" id="res-officer">S. Sharma, Tehsildar (Executive Magistrate)</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Date Applied: <span id="res-applied-date">01 Oct 2026</span></div>
+              </div>
+              <div>
+                <div style="font-size: 0.775rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Statutory Remarks / Note</div>
+                <div style="font-size: 0.875rem; color: var(--text-main); margin-top: 0.2rem; font-style: italic;" id="res-remarks">
+                  "All land revenue and tehsildar records verified. Digitally signed certificate issued."
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Action Buttons -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--border-color); flex-wrap: wrap; gap: 1rem;">
+            <button onclick="window.print()" class="btn-outline">🖨️ Print Status Report</button>
+            <a id="btn-download-cert" href="certificate-view.html" class="btn-saffron" style="display: inline-flex; font-size: 1rem;">
+              <span>📜</span> View &amp; Download Verified E-Certificate
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Official Footer -->
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <div>&copy; 2026 e-SevaConnect. Government of India Initiative.</div>
+      <div>Designed for Junior Web Developer E-Governance Internship Submission.</div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citizen Dashboard | e-SevaConnect E-Governance Portal</title>
+  <meta name="description" content="View your submitted applications, download digital certificates, and monitor grievance resolutions in one unified portal.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/design-system-v2.css">
+  <style>
+    .status-pill {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.775rem;
+      font-weight: 700;
+    }
+    .badge-success { background: #dcfce7; color: #166534; }
+    .badge-progress { background: #dbeafe; color: #1e40af; }
+    .badge-pending { background: #fef3c7; color: #92400e; }
+    .btn-sm {
+      padding: 0.35rem 0.65rem;
+      font-size: 0.8rem;
+      border-radius: var(--radius-sm);
+      display: inline-block;
+      margin-right: 0.25rem;
+    }
+    .dash-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.875rem;
+    }
+    .dash-table th {
+      background: #f1f5f9;
+      padding: 0.85rem 1rem;
+      font-weight: 700;
+      color: var(--gov-primary);
+      border-bottom: 2px solid var(--border-color);
+    }
+    .dash-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+    .dash-table tr:hover {
+      background-color: #f8fafc;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Accessibility Bar -->
+  <header class="top-util-bar" role="region" aria-label="Accessibility & Preferences">
+    <div class="container top-util-inner">
+      <div class="util-flag-badge">
+        <span class="util-tricolor-strip" aria-hidden="true">
+          <span class="tricolor-1"></span>
+          <span class="tricolor-2"></span>
+          <span class="tricolor-3"></span>
+        </span>
+        <span>GOVERNMENT OF INDIA &bull; CITIZEN SELF-SERVICE DASHBOARD</span>
+      </div>
+      <div class="util-controls">
+        <button id="btn-toggle-contrast" class="util-btn" title="Toggle High Contrast Display">
+          <span>◐</span> High Contrast
+        </button>
+        <div class="font-resizers">
+          <button id="btn-font-normal" class="util-btn">A</button>
+          <button id="btn-font-large" class="util-btn">A+</button>
+          <button id="btn-font-xlarge" class="util-btn">A++</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Branding -->
+  <div class="site-header">
+    <div class="container header-brand-row">
+      <div class="brand-wrapper">
+        <div class="national-emblem" aria-hidden="true">🏛️</div>
+        <div class="brand-titles">
+          <h1>e-SevaConnect</h1>
+          <p class="tagline">Citizen Services Management &amp; Digital Locker Desk</p>
+        </div>
+      </div>
+      <div class="brand-actions">
+        <a href="apply.html" class="btn-saffron" style="padding: 0.5rem 1rem; font-size: 0.875rem;">+ New Application</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="main-nav-bar" role="navigation" aria-label="Primary Navigation">
+    <div class="container nav-container">
+      <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+      <ul id="nav-links" class="nav-links">
+        <li class="nav-item"><a href="index.html">Home</a></li>
+        <li class="nav-item"><a href="services.html">Services Catalog</a></li>
+        <li class="nav-item"><a href="apply.html">Apply Online</a></li>
+        <li class="nav-item"><a href="track.html">Track Application</a></li>
+        <li class="nav-item"><a href="grievance.html">Grievance Redressal</a></li>
+        <li class="nav-item"><a href="dashboard.html" class="active">Citizen Dashboard</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div style="background-color: var(--gov-primary); color: #fff; padding: 2.25rem 0 1.75rem; border-bottom: 4px solid var(--gov-saffron);">
+    <div class="container">
+      <h2 style="font-size: 1.85rem; margin-bottom: 0.35rem;">Welcome to Your Citizen Dashboard</h2>
+      <p style="color: #cbd5e1; font-size: 0.95rem;">
+        View your submitted public applications, monitor pending approvals, download issued certificates, and track grievances.
+      </p>
+    </div>
+  </div>
+
+  <main class="section-py" id="main-content">
+    <div class="container">
+
+      <!-- Metrics Cards Grid -->
+      <div class="stats-grid" style="margin-bottom: 2.5rem;">
+        <div class="stat-item" style="background: var(--bg-surface); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+          <div class="stat-icon" style="background: #eff6ff; color: #1d4ed8;">📑</div>
+          <div class="stat-info">
+            <h4 id="dash-count-total" style="color: #1d4ed8;">3</h4>
+            <p>Total Applications</p>
+          </div>
+        </div>
+
+        <div class="stat-item" style="background: var(--bg-surface); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+          <div class="stat-icon" style="background: #fef3c7; color: #b45309;">⏳</div>
+          <div class="stat-info">
+            <h4 id="dash-count-pending" style="color: #b45309;">2</h4>
+            <p>In Progress / Verification</p>
+          </div>
+        </div>
+
+        <div class="stat-item" style="background: var(--bg-surface); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+          <div class="stat-icon" style="background: #dcfce7; color: #15803d;">✅</div>
+          <div class="stat-info">
+            <h4 id="dash-count-approved" style="color: #15803d;">1</h4>
+            <p>Issued E-Certificates</p>
+          </div>
+        </div>
+
+        <div class="stat-item" style="background: var(--bg-surface); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+          <div class="stat-icon" style="background: #fee2e2; color: #b91c1c;">📣</div>
+          <div class="stat-info">
+            <h4 id="dash-count-grievance" style="color: #b91c1c;">1</h4>
+            <p>Active Grievances</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Applications Table Card -->
+      <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); overflow: hidden; margin-bottom: 2.5rem;">
+        <div style="padding: 1.25rem 1.5rem; background: #fafafa; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+          <h3 style="color: var(--gov-primary); font-size: 1.25rem; margin: 0;">My Submitted Applications</h3>
+          <span style="font-size: 0.85rem; color: var(--text-muted);">Synced in Real-Time with State Registry</span>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table class="dash-table">
+            <thead>
+              <tr>
+                <th>Reference Tracking ID</th>
+                <th>Public Service Name</th>
+                <th>Department</th>
+                <th>Applied Date</th>
+                <th>Status</th>
+                <th>Available Actions</th>
+              </tr>
+            </thead>
+            <tbody id="dashboard-apps-tbody">
+              <!-- Dynamically populated by js/app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Official Footer -->
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <div>&copy; 2026 e-SevaConnect. Government of India Initiative.</div>
+      <div>Citizen Self-Service Dashboard.</div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
+
